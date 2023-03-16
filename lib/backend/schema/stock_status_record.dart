@@ -15,13 +15,16 @@ abstract class StockStatusRecord
 
   String? get name;
 
+  String? get nameAdmin;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(StockStatusRecordBuilder builder) => builder
     ..id = 0
-    ..name = '';
+    ..name = ''
+    ..nameAdmin = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('stock_status');
@@ -47,13 +50,15 @@ abstract class StockStatusRecord
 Map<String, dynamic> createStockStatusRecordData({
   int? id,
   String? name,
+  String? nameAdmin,
 }) {
   final firestoreData = serializers.toFirestore(
     StockStatusRecord.serializer,
     StockStatusRecord(
       (s) => s
         ..id = id
-        ..name = name,
+        ..name = name
+        ..nameAdmin = nameAdmin,
     ),
   );
 
