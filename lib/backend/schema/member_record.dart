@@ -25,6 +25,9 @@ abstract class MemberRecord
 
   String? get roomNo;
 
+  @BuiltValueField(wireName: 'create_by')
+  DocumentReference? get createBy;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -66,6 +69,7 @@ Map<String, dynamic> createMemberRecordData({
   String? lastName,
   String? fullName,
   String? roomNo,
+  DocumentReference? createBy,
 }) {
   final firestoreData = serializers.toFirestore(
     MemberRecord.serializer,
@@ -77,7 +81,8 @@ Map<String, dynamic> createMemberRecordData({
         ..firstName = firstName
         ..lastName = lastName
         ..fullName = fullName
-        ..roomNo = roomNo,
+        ..roomNo = roomNo
+        ..createBy = createBy,
     ),
   );
 
