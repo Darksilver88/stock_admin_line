@@ -357,6 +357,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                     if (_model.isMemberExit != null) {
                                       final stockListUpdateData = createStockListRecordData(
                                         updateDate: getCurrentTimestamp,
+                                        updateBy: FFAppState().currentAdminMember,
                                         receiveName: _model.receiveNameController.text,
                                         trackingCode: _model.trackingCodeController.text,
                                         roomNo: _model.roomNoController.text,

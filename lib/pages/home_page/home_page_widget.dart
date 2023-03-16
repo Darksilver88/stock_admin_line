@@ -48,6 +48,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         return;
       }
 
+      // updateCurrentAdminMember
+      // ค่านี้ต้องมาจากไลน์ เมื่อสามารถ ผูก user นิติ กับ ไลน์ OA ได้แล้ว
+      var rs = await FirebaseFirestore.instance.doc('kconnect/Koder3/member/FpHHryGD1d8qeV4FmvLd').get();
+      FFAppState().currentAdminMember = rs.reference;
+
       context.goNamedAuth('StockListPage', mounted);
     });
   }
@@ -97,8 +102,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         'K-Connect',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Kanit',
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              color: FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 42.0,
                               fontWeight: FontWeight.bold,
                             ),

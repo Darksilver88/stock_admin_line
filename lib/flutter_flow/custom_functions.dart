@@ -17,8 +17,6 @@ Future getStockStatus(int? status) async {
 }
 
 autoReceiveName(String? roomCode) async {
-  print("autoReceiveName");
   var rs = await FirebaseFirestore.instance.collection('kconnect/Koder3/member').where('roomNo', isEqualTo: roomCode).get();
-  print(rs.docs[0].data()["fullName"]);
   return rs.docs[0].data()["fullName"];
 }
