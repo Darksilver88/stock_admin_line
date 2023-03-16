@@ -436,7 +436,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'ระบบจะส่งการแจ้งเตือนไปยังลูกบ้าน',
+                                                    'ส่งการแจ้งเตือนไปยังลูกบ้าน',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1
@@ -454,8 +454,13 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                     onPressed: () async {
                                                       await actions
                                                           .sendNotificationToMember();
-                                                      FFAppState()
-                                                          .stockChecked = [];
+                                                      FFAppState().update(() {
+                                                        FFAppState()
+                                                            .stockChecked = [];
+                                                        FFAppState()
+                                                                .isBottomSheetShow =
+                                                            false;
+                                                      });
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(
@@ -536,10 +541,11 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                   queryBuilder: (stockListRecord) =>
                                       stockListRecord
                                           .where('status',
-                                              isEqualTo: valueOrDefault<int>(
+                                              isNotEqualTo: valueOrDefault<int>(
                                                 null,
-                                                2,
+                                                1,
                                               ))
+                                          .orderBy('status')
                                           .orderBy('create_date',
                                               descending: true),
                                 ),
@@ -797,7 +803,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                           fontFamily:
                                                                               'Kanit',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                              Color(0xFFBEC6CF),
                                                                         ),
                                                                   ),
                                                                 if (listViewStockListRecord
@@ -815,7 +821,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                           fontFamily:
                                                                               'Kanit',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                              Color(0xFFBEC6CF),
                                                                         ),
                                                                   ),
                                                               ],

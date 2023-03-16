@@ -48,7 +48,7 @@ class _NoDataWidgetState extends State<NoDataWidget> {
         children: [
           Icon(
             Icons.info_rounded,
-            color: FlutterFlowTheme.of(context).secondaryText,
+            color: Color(0xFFBEC6CF),
             size: 36.0,
           ),
           Padding(
@@ -58,7 +58,7 @@ class _NoDataWidgetState extends State<NoDataWidget> {
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyText1.override(
                     fontFamily: 'Kanit',
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: Color(0xFFBEC6CF),
                     fontSize: 18.0,
                   ),
             ),
