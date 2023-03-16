@@ -50,7 +50,7 @@ class _NoDataWidgetState extends State<NoDataWidget> {
           Icon(
             Icons.info_rounded,
             color: Color(0xFFBEC6CF),
-            size: 36,
+            size: 36.0,
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
@@ -58,10 +58,10 @@ class _NoDataWidgetState extends State<NoDataWidget> {
               'ไม่มีข้อมูล',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Kanit',
-                color: Color(0xFFBEC6CF),
-                fontSize: 18,
-              ),
+                    fontFamily: 'Kanit',
+                    color: Color(0xFFBEC6CF),
+                    fontSize: 18.0,
+                  ),
             ),
           ),
         ],
