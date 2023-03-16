@@ -205,15 +205,19 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                           .stockChecked
                                                                           .length >
                                                                       0) {
+                                                                    if (FFAppState()
+                                                                        .isBottomSheetShow) {
+                                                                      return;
+                                                                    }
+
                                                                     await showModalBottomSheet(
                                                                       isScrollControlled:
                                                                           true,
                                                                       backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primaryBackground,
-                                                                      barrierColor:
-                                                                          Color(
-                                                                              0x80000000),
+                                                                          Colors
+                                                                              .transparent,
+                                                                      enableDrag:
+                                                                          false,
                                                                       context:
                                                                           context,
                                                                       builder:
@@ -234,11 +238,22 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                         setState(
                                                                             () {}));
 
+                                                                    FFAppState()
+                                                                            .isBottomSheetShow =
+                                                                        true;
                                                                     return;
                                                                   } else {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    return;
+                                                                    if (FFAppState()
+                                                                        .isBottomSheetShow) {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      FFAppState()
+                                                                              .isBottomSheetShow =
+                                                                          false;
+                                                                      return;
+                                                                    } else {
+                                                                      return;
+                                                                    }
                                                                   }
                                                                 } else {
                                                                   FFAppState().removeFromStockChecked(
@@ -248,15 +263,19 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                           .stockChecked
                                                                           .length >
                                                                       0) {
+                                                                    if (FFAppState()
+                                                                        .isBottomSheetShow) {
+                                                                      return;
+                                                                    }
+
                                                                     await showModalBottomSheet(
                                                                       isScrollControlled:
                                                                           true,
                                                                       backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primaryBackground,
-                                                                      barrierColor:
-                                                                          Color(
-                                                                              0x80000000),
+                                                                          Colors
+                                                                              .transparent,
+                                                                      enableDrag:
+                                                                          false,
                                                                       context:
                                                                           context,
                                                                       builder:
@@ -277,11 +296,22 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                         setState(
                                                                             () {}));
 
+                                                                    FFAppState()
+                                                                            .isBottomSheetShow =
+                                                                        true;
                                                                     return;
                                                                   } else {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    return;
+                                                                    if (FFAppState()
+                                                                        .isBottomSheetShow) {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      FFAppState()
+                                                                              .isBottomSheetShow =
+                                                                          false;
+                                                                      return;
+                                                                    } else {
+                                                                      return;
+                                                                    }
                                                                   }
                                                                 }
                                                               },

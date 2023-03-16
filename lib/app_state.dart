@@ -43,6 +43,12 @@ class FFAppState extends ChangeNotifier {
   void removeAtIndexFromStockChecked(int _index) {
     _stockChecked.removeAt(_index);
   }
+
+  bool _isBottomSheetShow = false;
+  bool get isBottomSheetShow => _isBottomSheetShow;
+  set isBottomSheetShow(bool _value) {
+    _isBottomSheetShow = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
