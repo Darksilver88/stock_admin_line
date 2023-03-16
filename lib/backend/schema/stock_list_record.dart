@@ -27,6 +27,14 @@ abstract class StockListRecord
 
   String? get roomNo;
 
+  DocumentReference? get memberRef;
+
+  @BuiltValueField(wireName: 'update_date')
+  DateTime? get updateDate;
+
+  @BuiltValueField(wireName: 'update_by')
+  DateTime? get updateBy;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -67,6 +75,9 @@ Map<String, dynamic> createStockListRecordData({
   String? receiveName,
   String? trackingCode,
   String? roomNo,
+  DocumentReference? memberRef,
+  DateTime? updateDate,
+  DateTime? updateBy,
 }) {
   final firestoreData = serializers.toFirestore(
     StockListRecord.serializer,
@@ -78,7 +89,10 @@ Map<String, dynamic> createStockListRecordData({
         ..code = code
         ..receiveName = receiveName
         ..trackingCode = trackingCode
-        ..roomNo = roomNo,
+        ..roomNo = roomNo
+        ..memberRef = memberRef
+        ..updateDate = updateDate
+        ..updateBy = updateBy,
     ),
   );
 

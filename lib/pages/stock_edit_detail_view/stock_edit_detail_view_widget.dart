@@ -1,8 +1,11 @@
+import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -217,7 +220,6 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
-                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'ห้องเลขที่',
@@ -320,7 +322,6 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
-                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'ชื่อผู้รับ',
@@ -369,8 +370,67 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                var _shouldSetState = false;
+                                _model.isMemberExit =
+                                    await actions.checkMemberIsExit(
+                                  _model.roomNoController.text,
+                                  _model.receiveNameController.text,
+                                );
+                                _shouldSetState = true;
+                                if (_model.isMemberExit!) {
+                                  final stockListUpdateData =
+                                      createStockListRecordData(
+                                    updateDate: getCurrentTimestamp,
+                                    receiveName:
+                                        _model.receiveNameController.text,
+                                    trackingCode:
+                                        _model.trackingCodeController.text,
+                                    roomNo: _model.roomNoController.text,
+                                  );
+                                  await widget.stockParameter!.reference
+                                      .update(stockListUpdateData);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color: Colors.black,
+                                            ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryColor,
+                                    ),
+                                  );
+                                  context.safePop();
+                                  if (_shouldSetState) setState(() {});
+                                  return;
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'ขออภัยไม่มีลูกบ้านนี้ในระบบ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color: Colors.white,
+                                            ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor: Color(0xFFE98A15),
+                                    ),
+                                  );
+                                  if (_shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (_shouldSetState) setState(() {});
                               },
                               text: 'บันทึก',
                               options: FFButtonOptions(

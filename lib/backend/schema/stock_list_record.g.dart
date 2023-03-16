@@ -70,6 +70,28 @@ class _$StockListRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.memberRef;
+    if (value != null) {
+      result
+        ..add('memberRef')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
+    value = object.updateDate;
+    if (value != null) {
+      result
+        ..add('update_date')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.updateBy;
+    if (value != null) {
+      result
+        ..add('update_by')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -123,6 +145,20 @@ class _$StockListRecordSerializer
           result.roomNo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'memberRef':
+          result.memberRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
+        case 'update_date':
+          result.updateDate = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'update_by':
+          result.updateBy = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -152,6 +188,12 @@ class _$StockListRecord extends StockListRecord {
   @override
   final String? roomNo;
   @override
+  final DocumentReference<Object?>? memberRef;
+  @override
+  final DateTime? updateDate;
+  @override
+  final DateTime? updateBy;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StockListRecord([void Function(StockListRecordBuilder)? updates]) =>
@@ -165,6 +207,9 @@ class _$StockListRecord extends StockListRecord {
       this.receiveName,
       this.trackingCode,
       this.roomNo,
+      this.memberRef,
+      this.updateDate,
+      this.updateBy,
       this.ffRef})
       : super._();
 
@@ -187,6 +232,9 @@ class _$StockListRecord extends StockListRecord {
         receiveName == other.receiveName &&
         trackingCode == other.trackingCode &&
         roomNo == other.roomNo &&
+        memberRef == other.memberRef &&
+        updateDate == other.updateDate &&
+        updateBy == other.updateBy &&
         ffRef == other.ffRef;
   }
 
@@ -197,12 +245,20 @@ class _$StockListRecord extends StockListRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, createDate.hashCode), createBy.hashCode),
-                            status.hashCode),
-                        code.hashCode),
-                    receiveName.hashCode),
-                trackingCode.hashCode),
-            roomNo.hashCode),
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, createDate.hashCode),
+                                            createBy.hashCode),
+                                        status.hashCode),
+                                    code.hashCode),
+                                receiveName.hashCode),
+                            trackingCode.hashCode),
+                        roomNo.hashCode),
+                    memberRef.hashCode),
+                updateDate.hashCode),
+            updateBy.hashCode),
         ffRef.hashCode));
   }
 
@@ -216,6 +272,9 @@ class _$StockListRecord extends StockListRecord {
           ..add('receiveName', receiveName)
           ..add('trackingCode', trackingCode)
           ..add('roomNo', roomNo)
+          ..add('memberRef', memberRef)
+          ..add('updateDate', updateDate)
+          ..add('updateBy', updateBy)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -254,6 +313,19 @@ class StockListRecordBuilder
   String? get roomNo => _$this._roomNo;
   set roomNo(String? roomNo) => _$this._roomNo = roomNo;
 
+  DocumentReference<Object?>? _memberRef;
+  DocumentReference<Object?>? get memberRef => _$this._memberRef;
+  set memberRef(DocumentReference<Object?>? memberRef) =>
+      _$this._memberRef = memberRef;
+
+  DateTime? _updateDate;
+  DateTime? get updateDate => _$this._updateDate;
+  set updateDate(DateTime? updateDate) => _$this._updateDate = updateDate;
+
+  DateTime? _updateBy;
+  DateTime? get updateBy => _$this._updateBy;
+  set updateBy(DateTime? updateBy) => _$this._updateBy = updateBy;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -272,6 +344,9 @@ class StockListRecordBuilder
       _receiveName = $v.receiveName;
       _trackingCode = $v.trackingCode;
       _roomNo = $v.roomNo;
+      _memberRef = $v.memberRef;
+      _updateDate = $v.updateDate;
+      _updateBy = $v.updateBy;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -302,6 +377,9 @@ class StockListRecordBuilder
             receiveName: receiveName,
             trackingCode: trackingCode,
             roomNo: roomNo,
+            memberRef: memberRef,
+            updateDate: updateDate,
+            updateBy: updateBy,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

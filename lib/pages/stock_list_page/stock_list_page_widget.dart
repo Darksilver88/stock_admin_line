@@ -1,7 +1,9 @@
 import '/backend/backend.dart';
 import '/components/no_data_widget.dart';
+import '/components/notification_confirm_bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -130,6 +132,41 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                     onChanged: (newValue) async {
                                       setState(() => _model.checkboxValueMap[
                                           listViewStockListRecord] = newValue!);
+                                      if (newValue!) {
+                                        var _shouldSetState = false;
+                                        _model.isCheckedStock =
+                                            await actions.isCheckedStock();
+                                        _shouldSetState = true;
+                                        if (_model.isCheckedStock!) {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryBackground,
+                                            barrierColor: Color(0x80000000),
+                                            context: context,
+                                            builder: (context) {
+                                              return Padding(
+                                                padding: MediaQuery.of(context)
+                                                    .viewInsets,
+                                                child: Container(
+                                                  height: 300.0,
+                                                  child:
+                                                      NotificationConfirmBottomSheetWidget(),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
+
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        } else {
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        }
+
+                                        if (_shouldSetState) setState(() {});
+                                      }
                                     },
                                     activeColor: FlutterFlowTheme.of(context)
                                         .primaryColor,
