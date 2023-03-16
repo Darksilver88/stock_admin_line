@@ -17,6 +17,8 @@ class FFAppState extends ChangeNotifier {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
+    _currentAdminMember =
+        prefs.getString('ff_currentAdminMember')?.ref ?? _currentAdminMember;
   }
 
   void update(VoidCallback callback) {
@@ -48,6 +50,15 @@ class FFAppState extends ChangeNotifier {
   bool get isBottomSheetShow => _isBottomSheetShow;
   set isBottomSheetShow(bool _value) {
     _isBottomSheetShow = _value;
+  }
+
+  DocumentReference? _currentAdminMember;
+  DocumentReference? get currentAdminMember => _currentAdminMember;
+  set currentAdminMember(DocumentReference? _value) {
+    _currentAdminMember = _value;
+    _value != null
+        ? prefs.setString('ff_currentAdminMember', _value.path)
+        : prefs.remove('ff_currentAdminMember');
   }
 }
 
