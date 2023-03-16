@@ -1,3 +1,4 @@
+import '../../flutter_flow/flutter_flow_icon_button.dart';
 import '/backend/backend.dart';
 import '/components/no_data_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -110,7 +111,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         );
                                       }
                                       return ListView.builder(
-                                        padding: EdgeInsets.zero,
+                                        padding: EdgeInsets.only(bottom: 200),
                                         shrinkWrap: true,
                                         scrollDirection: Axis.vertical,
                                         itemCount: listViewStockListRecordList.length,
@@ -448,7 +449,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                     );
                                   }
                                   return ListView.builder(
-                                    padding: EdgeInsets.zero,
+                                    padding: EdgeInsets.only(bottom: 200),
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     itemCount: listViewStockListRecordList.length,
