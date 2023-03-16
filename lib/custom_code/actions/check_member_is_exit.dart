@@ -12,5 +12,5 @@ Future<bool> checkMemberIsExit(
   String? fullName,
 ) async {
   // Add your function code here!
-  return false;
+  return true;
 }

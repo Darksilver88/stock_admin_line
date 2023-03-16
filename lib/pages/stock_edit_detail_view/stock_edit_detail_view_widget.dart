@@ -9,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'stock_edit_detail_view_model.dart';
 export 'stock_edit_detail_view_model.dart';
 
@@ -21,8 +22,7 @@ class StockEditDetailViewWidget extends StatefulWidget {
   final StockListRecord? stockParameter;
 
   @override
-  _StockEditDetailViewWidgetState createState() =>
-      _StockEditDetailViewWidgetState();
+  _StockEditDetailViewWidgetState createState() => _StockEditDetailViewWidgetState();
 }
 
 class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
@@ -36,12 +36,9 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
     super.initState();
     _model = createModel(context, () => StockEditDetailViewModel());
 
-    _model.trackingCodeController ??=
-        TextEditingController(text: widget.stockParameter!.trackingCode);
-    _model.roomNoController ??=
-        TextEditingController(text: widget.stockParameter!.roomNo);
-    _model.receiveNameController ??=
-        TextEditingController(text: widget.stockParameter!.receiveName);
+    _model.trackingCodeController ??= TextEditingController(text: widget.stockParameter!.trackingCode);
+    _model.roomNoController ??= TextEditingController(text: widget.stockParameter!.roomNo);
+    _model.receiveNameController ??= TextEditingController(text: widget.stockParameter!.receiveName);
   }
 
   @override
@@ -61,7 +58,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
             child: FutureBuilder<List<MemberRecord>>(
               future: queryMemberRecordOnce(),
               builder: (context, snapshot) {
@@ -69,8 +66,8 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                 if (!snapshot.hasData) {
                   return Center(
                     child: SizedBox(
-                      width: 50.0,
-                      height: 50.0,
+                      width: 50,
+                      height: 50,
                       child: CircularProgressIndicator(
                         color: FlutterFlowTheme.of(context).primaryColor,
                       ),
@@ -80,15 +77,15 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                 List<MemberRecord> containerMemberRecordList = snapshot.data!;
                 return Material(
                   color: Colors.transparent,
-                  elevation: 1.0,
+                  elevation: 1,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Form(
                       key: _model.formKey,
@@ -97,115 +94,92 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
                                   widget.stockParameter!.code!,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
+                                  style: FlutterFlowTheme.of(context).bodyText1.override(
                                         fontFamily: 'Kanit',
-                                        fontSize: 32.0,
+                                        fontSize: 32,
                                       ),
                                 ),
                               ],
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                             child: TextFormField(
                               controller: _model.trackingCodeController,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'รหัสติดตามพัสดุ',
-                                hintStyle:
-                                    FlutterFlowTheme.of(context).bodyText2,
+                                hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).lineColor,
-                                    width: 1.0,
+                                    color: FlutterFlowTheme.of(context).lineColor,
+                                    width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderRadius: BorderRadius.circular(16),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).lineColor,
-                                    width: 1.0,
+                                    color: FlutterFlowTheme.of(context).lineColor,
+                                    width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderRadius: BorderRadius.circular(16),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0x00000000),
-                                    width: 1.0,
+                                    width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderRadius: BorderRadius.circular(16),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0x00000000),
-                                    width: 1.0,
+                                    width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderRadius: BorderRadius.circular(16),
                                 ),
                               ),
                               style: FlutterFlowTheme.of(context).bodyText1,
-                              validator: _model.trackingCodeControllerValidator
-                                  .asValidator(context),
+                              validator: _model.trackingCodeControllerValidator.asValidator(context),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                             child: Autocomplete<String>(
-                              initialValue: TextEditingValue(
-                                  text: widget.stockParameter!.roomNo!),
+                              initialValue: TextEditingValue(text: widget.stockParameter!.roomNo!),
                               optionsBuilder: (textEditingValue) {
                                 if (textEditingValue.text == '') {
                                   return const Iterable<String>.empty();
                                 }
-                                return containerMemberRecordList
-                                    .map((e) => e.roomNo)
-                                    .withoutNulls
-                                    .toList()
-                                    .toList()
-                                    .where((option) {
+                                return containerMemberRecordList.map((e) => e.roomNo).withoutNulls.toList().toList().where((option) {
                                   final lowercaseOption = option.toLowerCase();
-                                  return lowercaseOption.contains(
-                                      textEditingValue.text.toLowerCase());
+                                  return lowercaseOption.contains(textEditingValue.text.toLowerCase());
                                 });
                               },
-                              optionsViewBuilder:
-                                  (context, onSelected, options) {
+                              optionsViewBuilder: (context, onSelected, options) {
                                 return AutocompleteOptionsList(
                                   textFieldKey: _model.roomNoKey,
                                   textController: _model.roomNoController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                  textStyle: FlutterFlowTheme.of(context).bodyText1,
                                   textHighlightStyle: TextStyle(),
-                                  elevation: 4.0,
-                                  optionBackgroundColor:
-                                      FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                  optionHighlightColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                  maxHeight: 200.0,
+                                  elevation: 4,
+                                  optionBackgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                                  optionHighlightColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  maxHeight: 200,
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() =>
-                                    _model.roomNoSelectedOption = selection);
+                                setState(() => _model.roomNoSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -223,90 +197,71 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'ห้องเลขที่',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                    hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                        width: 1.0,
+                                        color: FlutterFlowTheme.of(context).lineColor,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                        width: 1.0,
+                                        color: FlutterFlowTheme.of(context).lineColor,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
-                                  validator: _model.roomNoControllerValidator
-                                      .asValidator(context),
+                                  validator: _model.roomNoControllerValidator.asValidator(context),
                                 );
                               },
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                             child: Autocomplete<String>(
-                              initialValue: TextEditingValue(
-                                  text: widget.stockParameter!.receiveName!),
+                              initialValue: TextEditingValue(text: widget.stockParameter!.receiveName!),
                               optionsBuilder: (textEditingValue) {
                                 if (textEditingValue.text == '') {
                                   return const Iterable<String>.empty();
                                 }
-                                return containerMemberRecordList
-                                    .map((e) => e.fullName)
-                                    .withoutNulls
-                                    .toList()
-                                    .toList()
-                                    .where((option) {
+                                return containerMemberRecordList.map((e) => e.fullName).withoutNulls.toList().toList().where((option) {
                                   final lowercaseOption = option.toLowerCase();
-                                  return lowercaseOption.contains(
-                                      textEditingValue.text.toLowerCase());
+                                  return lowercaseOption.contains(textEditingValue.text.toLowerCase());
                                 });
                               },
-                              optionsViewBuilder:
-                                  (context, onSelected, options) {
+                              optionsViewBuilder: (context, onSelected, options) {
                                 return AutocompleteOptionsList(
                                   textFieldKey: _model.receiveNameKey,
                                   textController: _model.receiveNameController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                  textStyle: FlutterFlowTheme.of(context).bodyText1,
                                   textHighlightStyle: TextStyle(),
-                                  elevation: 4.0,
-                                  optionBackgroundColor:
-                                      FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                  optionHighlightColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                  maxHeight: 200.0,
+                                  elevation: 4,
+                                  optionBackgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                                  optionHighlightColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  maxHeight: 200,
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() => _model
-                                    .receiveNameSelectedOption = selection);
+                                setState(() => _model.receiveNameSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -315,8 +270,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                 focusNode,
                                 onEditingComplete,
                               ) {
-                                _model.receiveNameController =
-                                    textEditingController;
+                                _model.receiveNameController = textEditingController;
                                 return TextFormField(
                                   key: _model.receiveNameKey,
                                   controller: textEditingController,
@@ -325,86 +279,71 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'ชื่อผู้รับ',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                    hintStyle: FlutterFlowTheme.of(context).bodyText2,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                        width: 1.0,
+                                        color: FlutterFlowTheme.of(context).lineColor,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                        width: 1.0,
+                                        color: FlutterFlowTheme.of(context).lineColor,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
-                                  validator: _model
-                                      .receiveNameControllerValidator
-                                      .asValidator(context),
+                                  validator: _model.receiveNameControllerValidator.asValidator(context),
                                 );
                               },
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 var _shouldSetState = false;
-                                _model.isMemberExit =
-                                    await actions.checkMemberIsExit(
+                                _model.isMemberExit = await actions.checkMemberIsExit(
                                   _model.roomNoController.text,
                                   _model.receiveNameController.text,
                                 );
                                 _shouldSetState = true;
                                 if (_model.isMemberExit!) {
-                                  final stockListUpdateData =
-                                      createStockListRecordData(
+                                  final stockListUpdateData = createStockListRecordData(
                                     updateDate: getCurrentTimestamp,
-                                    receiveName:
-                                        _model.receiveNameController.text,
-                                    trackingCode:
-                                        _model.trackingCodeController.text,
+                                    receiveName: _model.receiveNameController.text,
+                                    trackingCode: _model.trackingCodeController.text,
                                     roomNo: _model.roomNoController.text,
                                   );
-                                  await widget.stockParameter!.reference
-                                      .update(stockListUpdateData);
+                                  await widget.stockParameter!.reference.update(stockListUpdateData);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
                                         'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
+                                        style: FlutterFlowTheme.of(context).subtitle1.override(
                                               fontFamily: 'Kanit',
-                                              color: Colors.black,
+                                              color: Colors.white,
                                             ),
                                       ),
                                       duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryColor,
+                                      backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
                                     ),
                                   );
                                   context.safePop();
@@ -415,9 +354,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                     SnackBar(
                                       content: Text(
                                         'ขออภัยไม่มีลูกบ้านนี้ในระบบ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
+                                        style: FlutterFlowTheme.of(context).subtitle1.override(
                                               fontFamily: 'Kanit',
                                               color: Colors.white,
                                             ),
@@ -434,25 +371,20 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                               },
                               text: 'บันทึก',
                               options: FFButtonOptions(
-                                width: 130.0,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
+                                width: 130,
+                                height: 40,
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                color: FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                                       fontFamily: 'Kanit',
                                       color: Colors.white,
                                     ),
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
-                                  width: 1.0,
+                                  width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                             ),
                           ),

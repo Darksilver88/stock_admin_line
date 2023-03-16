@@ -9,5 +9,5 @@ import 'package:flutter/material.dart';
 
 Future<bool> isCheckedStock() async {
   // Add your function code here!
-  return false;
+  return true;
 }
