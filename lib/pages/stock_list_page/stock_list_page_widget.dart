@@ -1,11 +1,11 @@
 import '/backend/backend.dart';
 import '/components/no_data_widget.dart';
-import '/components/notification_confirm_bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -390,6 +390,31 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         ),
                                       ],
                                     ),
+                                  Align(
+                                    alignment: AlignmentDirectional(1, 1),
+                                    child: FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 30,
+                                      borderWidth: 1,
+                                      buttonSize: 60,
+                                      icon: Icon(
+                                        Icons.add_circle,
+                                        color: FlutterFlowTheme.of(context).primaryText,
+                                        size: 30,
+                                      ),
+                                      onPressed: () async {
+                                        final stockListCreateData = createStockListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          code: random_data.randomInteger(0, 100000).toString(),
+                                          status: 1,
+                                          roomNo: '',
+                                          receiveName: '',
+                                          trackingCode: random_data.randomInteger(0, 100000).toString(),
+                                        );
+                                        await StockListRecord.collection.doc().set(stockListCreateData);
+                                      },
+                                    ),
+                                  )
                                 ],
                               ),
                               StreamBuilder<List<StockListRecord>>(

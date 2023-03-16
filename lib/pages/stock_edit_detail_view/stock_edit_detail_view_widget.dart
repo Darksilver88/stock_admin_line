@@ -9,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 
 import 'stock_edit_detail_view_model.dart';
 export 'stock_edit_detail_view_model.dart';
@@ -179,9 +180,10 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   maxHeight: 200,
                                 );
                               },
-                              onSelected: (String selection) {
+                              onSelected: (String selection) async {
                                 setState(() => _model.roomNoSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
+                                _model.receiveNameController.text = await functions.autoReceiveName(selection);
                               },
                               fieldViewBuilder: (
                                 context,
