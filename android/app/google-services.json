@@ -1,0 +1,310 @@
+{
+  "project_info": {
+    "project_number": "465562133299",
+    "project_id": "v-product-dev",
+    "storage_bucket": "v-product-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:ae3432dbc70f4958261446",
+        "android_client_info": {
+          "package_name": "com.koder3.client.kvisit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-gi6mrg2vskptantknit9tchcavhrdjtg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koder3.client.kvisit",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:d9eb140ff7c78d51261446",
+        "android_client_info": {
+          "package_name": "com.koder3.guard_scan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-k8gp73v3sii3inlkg4l1chjou5o3h9kl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koder3.guard_scan",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:07e63489f0ab32bf261446",
+        "android_client_info": {
+          "package_name": "com.koder3.kconect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-g76rkm4u42htc6pjo0nhh3nm5c5o19jc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koder3.kconect",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:f48fbcf69d9bc108261446",
+        "android_client_info": {
+          "package_name": "com.koder3.kconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:b9a41cf8616da102261446",
+        "android_client_info": {
+          "package_name": "com.koder3.kproduct.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-59lid7bbta7tj4ii0ib0qk7cfbou0bon.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koder3.kproduct.dev",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:6957401d0af49084261446",
+        "android_client_info": {
+          "package_name": "com.koder3.kvisitplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-qnran56qmkn3ue2upt5oknjajd2mslb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koder3.kvisitplus",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465562133299:android:bf33794e61fcadd7261446",
+        "android_client_info": {
+          "package_name": "com.koder3.stockadminline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465562133299-ts8ksvdnq5pdb0vuskrrskuc5mtiri03.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koder3.stockadminline",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW3050yuvuFQa6-_vptUYZ2l1PL9bEDRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465562133299-f9gd6iene02h708dtqt6d3m2n3f9fue0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465562133299-1k1s24jrn6uus5g2o1td7npoqpgq687b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koder3.stockadminline"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
