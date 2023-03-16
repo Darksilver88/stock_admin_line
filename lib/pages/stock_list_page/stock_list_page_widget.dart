@@ -1,10 +1,14 @@
+import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/no_data_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -436,7 +440,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'ส่งการแจ้งเตือนไปยังลูกบ้าน',
+                                                    'ส่งแจ้งเตือนไปยังลูกบ้าน',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1
@@ -534,6 +538,39 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         ),
                                       ],
                                     ),
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, 1.0),
+                                    child: FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 30.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 60.0,
+                                      icon: Icon(
+                                        Icons.add_circle,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 30.0,
+                                      ),
+                                      onPressed: () async {
+                                        final stockListCreateData =
+                                            createStockListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          code: random_data
+                                              .randomInteger(0, 100000)
+                                              .toString(),
+                                          status: 1,
+                                          roomNo: '',
+                                          receiveName: '',
+                                          trackingCode: random_data
+                                              .randomInteger(0, 100000)
+                                              .toString(),
+                                        );
+                                        await StockListRecord.collection
+                                            .doc()
+                                            .set(stockListCreateData);
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                               StreamBuilder<List<StockListRecord>>(
