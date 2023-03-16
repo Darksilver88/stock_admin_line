@@ -54,6 +54,8 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -368,92 +370,128 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 0.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                var _shouldSetState = false;
-                                _model.isMemberExit =
-                                    await actions.checkMemberIsExit(
-                                  _model.roomNoController.text,
-                                  _model.receiveNameController.text,
-                                );
-                                _shouldSetState = true;
-                                if (_model.isMemberExit!) {
-                                  final stockListUpdateData =
-                                      createStockListRecordData(
-                                    updateDate: getCurrentTimestamp,
-                                    receiveName:
-                                        _model.receiveNameController.text,
-                                    trackingCode:
-                                        _model.trackingCodeController.text,
-                                    roomNo: _model.roomNoController.text,
-                                  );
-                                  await widget.stockParameter!.reference
-                                      .update(stockListUpdateData);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              color: Colors.white,
-                                            ),
-                                      ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryColor,
+                                16.0, 16.0, 6.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    context.safePop();
+                                  },
+                                  text: 'ย้อนกลับ',
+                                  options: FFButtonOptions(
+                                    width: 130.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: Color(0xFFD83333),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: Colors.white,
+                                        ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
                                     ),
-                                  );
-                                  context.safePop();
-                                  if (_shouldSetState) setState(() {});
-                                  return;
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'ขออภัยไม่มีลูกบ้านนี้ในระบบ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
-                                              fontFamily: 'Kanit',
-                                              color: Colors.white,
-                                            ),
-                                      ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor: Color(0xFFE98A15),
-                                    ),
-                                  );
-                                  if (_shouldSetState) setState(() {});
-                                  return;
-                                }
-
-                                if (_shouldSetState) setState(() {});
-                              },
-                              text: 'บันทึก',
-                              options: FFButtonOptions(
-                                width: 130.0,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Kanit',
-                                      color: Colors.white,
-                                    ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    var _shouldSetState = false;
+                                    _model.isMemberExit =
+                                        await actions.checkMemberIsExit(
+                                      _model.roomNoController.text,
+                                      _model.receiveNameController.text,
+                                    );
+                                    _shouldSetState = true;
+                                    if (_model.isMemberExit != null) {
+                                      final stockListUpdateData =
+                                          createStockListRecordData(
+                                        updateDate: getCurrentTimestamp,
+                                        receiveName:
+                                            _model.receiveNameController.text,
+                                        trackingCode:
+                                            _model.trackingCodeController.text,
+                                        roomNo: _model.roomNoController.text,
+                                      );
+                                      await widget.stockParameter!.reference
+                                          .update(stockListUpdateData);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  color: Colors.white,
+                                                ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryColor,
+                                        ),
+                                      );
+                                      context.safePop();
+                                      if (_shouldSetState) setState(() {});
+                                      return;
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'ขออภัยไม่มีลูกบ้านนี้ในระบบ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1
+                                                .override(
+                                                  fontFamily: 'Kanit',
+                                                  color: Colors.white,
+                                                ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor: Color(0xFFE98A15),
+                                        ),
+                                      );
+                                      if (_shouldSetState) setState(() {});
+                                      return;
+                                    }
+
+                                    if (_shouldSetState) setState(() {});
+                                  },
+                                  text: 'บันทึก',
+                                  options: FFButtonOptions(
+                                    width: 130.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Kanit',
+                                          color: Colors.white,
+                                        ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
