@@ -19,6 +19,7 @@ class FFAppState extends ChangeNotifier {
     prefs = await SharedPreferences.getInstance();
     _currentAdminMember =
         prefs.getString('ff_currentAdminMember')?.ref ?? _currentAdminMember;
+    _customerName = prefs.getString('ff_customerName') ?? _customerName;
   }
 
   void update(VoidCallback callback) {
@@ -59,6 +60,13 @@ class FFAppState extends ChangeNotifier {
     _value != null
         ? prefs.setString('ff_currentAdminMember', _value.path)
         : prefs.remove('ff_currentAdminMember');
+  }
+
+  String _customerName = '';
+  String get customerName => _customerName;
+  set customerName(String _value) {
+    _customerName = _value;
+    prefs.setString('ff_customerName', _value);
   }
 }
 
