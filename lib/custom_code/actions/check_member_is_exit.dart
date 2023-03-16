@@ -14,7 +14,7 @@ Future<dynamic> checkMemberIsExit(
   String? fullName,
 ) async {
   // Add your function code here!
-  var rs = await FirebaseFirestore.instance.collection("kconnect/Koder3/member").where('fullName', isEqualTo: fullName).where('roomNo', isEqualTo: roomNo).get();
+  var rs = await FirebaseFirestore.instance.collection("kconnect/${FFAppState().customerName}/member").where('fullName', isEqualTo: fullName).where('roomNo', isEqualTo: roomNo).get();
   if (rs.docs.isEmpty) {
     return null;
   } else {

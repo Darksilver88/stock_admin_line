@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:stock_admin_line/app_state.dart';
+
 import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
@@ -41,7 +43,7 @@ abstract class MemberRecord
     ..roomNo = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('kconnect/Koder3/member');
+      FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/member');
 
   static Stream<MemberRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
