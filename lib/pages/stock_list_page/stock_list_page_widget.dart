@@ -3,7 +3,6 @@ import '/components/no_data_widget.dart';
 import '/components/notification_confirm_bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -199,15 +198,13 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                             listViewStockListRecord] =
                                                                         newValue!);
                                                                 if (newValue!) {
-                                                                  var _shouldSetState =
-                                                                      false;
-                                                                  _model.isCheckedStock =
-                                                                      await actions
-                                                                          .isCheckedStock();
-                                                                  _shouldSetState =
-                                                                      true;
-                                                                  if (_model
-                                                                      .isCheckedStock!) {
+                                                                  FFAppState().addToStockChecked(
+                                                                      listViewStockListRecord
+                                                                          .reference);
+                                                                  if (FFAppState()
+                                                                          .stockChecked
+                                                                          .length >
+                                                                      0) {
                                                                     await showModalBottomSheet(
                                                                       isScrollControlled:
                                                                           true,
@@ -237,20 +234,55 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                         setState(
                                                                             () {}));
 
-                                                                    if (_shouldSetState)
-                                                                      setState(
-                                                                          () {});
                                                                     return;
                                                                   } else {
-                                                                    if (_shouldSetState)
-                                                                      setState(
-                                                                          () {});
+                                                                    Navigator.pop(
+                                                                        context);
                                                                     return;
                                                                   }
+                                                                } else {
+                                                                  FFAppState().removeFromStockChecked(
+                                                                      listViewStockListRecord
+                                                                          .reference);
+                                                                  if (FFAppState()
+                                                                          .stockChecked
+                                                                          .length >
+                                                                      0) {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryBackground,
+                                                                      barrierColor:
+                                                                          Color(
+                                                                              0x80000000),
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return Padding(
+                                                                          padding:
+                                                                              MediaQuery.of(context).viewInsets,
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                150.0,
+                                                                            child:
+                                                                                NotificationConfirmBottomSheetWidget(),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
 
-                                                                  if (_shouldSetState)
-                                                                    setState(
-                                                                        () {});
+                                                                    return;
+                                                                  } else {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    return;
+                                                                  }
                                                                 }
                                                               },
                                                               activeColor:
