@@ -163,89 +163,109 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Theme(
-                                                      data: ThemeData(
-                                                        checkboxTheme:
-                                                            CheckboxThemeData(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        0.0),
-                                                          ),
-                                                        ),
-                                                        unselectedWidgetColor:
-                                                            Color(0xFFF5F5F5),
-                                                      ),
-                                                      child: Checkbox(
-                                                        value: _model
-                                                                .checkboxValueMap[
-                                                            listViewStockListRecord] ??= false,
-                                                        onChanged:
-                                                            (newValue) async {
-                                                          setState(() => _model
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (listViewStockListRecord
+                                                                .memberRef !=
+                                                            null)
+                                                          Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              0.0),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  Color(
+                                                                      0xFFBEC6CF),
+                                                            ),
+                                                            child: Checkbox(
+                                                              value: _model
                                                                       .checkboxValueMap[
-                                                                  listViewStockListRecord] =
-                                                              newValue!);
-                                                          if (newValue!) {
-                                                            var _shouldSetState =
-                                                                false;
-                                                            _model.isCheckedStock =
-                                                                await actions
-                                                                    .isCheckedStock();
-                                                            _shouldSetState =
-                                                                true;
-                                                            if (_model
-                                                                .isCheckedStock!) {
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                                barrierColor: Color(
-                                                                    0x80000000),
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return Padding(
-                                                                    padding: MediaQuery.of(
-                                                                            context)
-                                                                        .viewInsets,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          150.0,
-                                                                      child:
-                                                                          NotificationConfirmBottomSheetWidget(),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  setState(
-                                                                      () {}));
+                                                                  listViewStockListRecord] ??= false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxValueMap[
+                                                                            listViewStockListRecord] =
+                                                                        newValue!);
+                                                                if (newValue!) {
+                                                                  var _shouldSetState =
+                                                                      false;
+                                                                  _model.isCheckedStock =
+                                                                      await actions
+                                                                          .isCheckedStock();
+                                                                  _shouldSetState =
+                                                                      true;
+                                                                  if (_model
+                                                                      .isCheckedStock!) {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryBackground,
+                                                                      barrierColor:
+                                                                          Color(
+                                                                              0x80000000),
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return Padding(
+                                                                          padding:
+                                                                              MediaQuery.of(context).viewInsets,
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                150.0,
+                                                                            child:
+                                                                                NotificationConfirmBottomSheetWidget(),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
 
-                                                              if (_shouldSetState)
-                                                                setState(() {});
-                                                              return;
-                                                            } else {
-                                                              if (_shouldSetState)
-                                                                setState(() {});
-                                                              return;
-                                                            }
+                                                                    if (_shouldSetState)
+                                                                      setState(
+                                                                          () {});
+                                                                    return;
+                                                                  } else {
+                                                                    if (_shouldSetState)
+                                                                      setState(
+                                                                          () {});
+                                                                    return;
+                                                                  }
 
-                                                            if (_shouldSetState)
-                                                              setState(() {});
-                                                          }
-                                                        },
-                                                        activeColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                      ),
+                                                                  if (_shouldSetState)
+                                                                    setState(
+                                                                        () {});
+                                                                }
+                                                              },
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                            ),
+                                                          ),
+                                                        if (listViewStockListRecord
+                                                                .memberRef ==
+                                                            null)
+                                                          Icon(
+                                                            Icons.edit,
+                                                            color: Colors.black,
+                                                            size: 24.0,
+                                                          ),
+                                                      ],
                                                     ),
                                                     Expanded(
                                                       child: Padding(
