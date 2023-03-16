@@ -4,6 +4,7 @@ import 'package:from_css_color/from_css_color.dart';
 import 'stock_list_record.dart';
 import 'member_record.dart';
 import 'prefix_tracking_code_record.dart';
+import 'stock_status_record.dart';
 
 import 'index.dart';
 
@@ -17,6 +18,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   StockListRecord,
   MemberRecord,
   PrefixTrackingCodeRecord,
+  StockStatusRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

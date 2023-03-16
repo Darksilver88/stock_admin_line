@@ -398,7 +398,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                             .subtitle1
                                             .override(
                                               fontFamily: 'Kanit',
-                                              color: Colors.black,
+                                              color: Colors.white,
                                             ),
                                       ),
                                       duration: Duration(milliseconds: 4000),
