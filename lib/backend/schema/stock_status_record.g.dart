@@ -34,6 +34,13 @@ class _$StockStatusRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.nameAdmin;
+    if (value != null) {
+      result
+        ..add('nameAdmin')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -65,6 +72,10 @@ class _$StockStatusRecordSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'nameAdmin':
+          result.nameAdmin = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -84,13 +95,16 @@ class _$StockStatusRecord extends StockStatusRecord {
   @override
   final String? name;
   @override
+  final String? nameAdmin;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StockStatusRecord(
           [void Function(StockStatusRecordBuilder)? updates]) =>
       (new StockStatusRecordBuilder()..update(updates))._build();
 
-  _$StockStatusRecord._({this.id, this.name, this.ffRef}) : super._();
+  _$StockStatusRecord._({this.id, this.name, this.nameAdmin, this.ffRef})
+      : super._();
 
   @override
   StockStatusRecord rebuild(void Function(StockStatusRecordBuilder) updates) =>
@@ -106,12 +120,15 @@ class _$StockStatusRecord extends StockStatusRecord {
     return other is StockStatusRecord &&
         id == other.id &&
         name == other.name &&
+        nameAdmin == other.nameAdmin &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, id.hashCode), name.hashCode), ffRef.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, id.hashCode), name.hashCode), nameAdmin.hashCode),
+        ffRef.hashCode));
   }
 
   @override
@@ -119,6 +136,7 @@ class _$StockStatusRecord extends StockStatusRecord {
     return (newBuiltValueToStringHelper(r'StockStatusRecord')
           ..add('id', id)
           ..add('name', name)
+          ..add('nameAdmin', nameAdmin)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -136,6 +154,10 @@ class StockStatusRecordBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _nameAdmin;
+  String? get nameAdmin => _$this._nameAdmin;
+  set nameAdmin(String? nameAdmin) => _$this._nameAdmin = nameAdmin;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -149,6 +171,7 @@ class StockStatusRecordBuilder
     if ($v != null) {
       _id = $v.id;
       _name = $v.name;
+      _nameAdmin = $v.nameAdmin;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -170,8 +193,9 @@ class StockStatusRecordBuilder
   StockStatusRecord build() => _build();
 
   _$StockStatusRecord _build() {
-    final _$result =
-        _$v ?? new _$StockStatusRecord._(id: id, name: name, ffRef: ffRef);
+    final _$result = _$v ??
+        new _$StockStatusRecord._(
+            id: id, name: name, nameAdmin: nameAdmin, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
