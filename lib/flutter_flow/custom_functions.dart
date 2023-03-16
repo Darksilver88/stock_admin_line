@@ -11,6 +11,7 @@ import '../backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../auth/auth_util.dart';
 
-String? getStockStatus(int? status) {
-  return "aaa";
+Future getStockStatus(int? status) async {
+  var rs = await FirebaseFirestore.instance.collection('kconnect/Koder3/stock/data/stock_status').where('id', isEqualTo: status).get();
+  return rs.docs[0].data()["nameAdmin"];
 }

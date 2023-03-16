@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'no_data_model.dart';
 export 'no_data_model.dart';
 
@@ -48,19 +49,19 @@ class _NoDataWidgetState extends State<NoDataWidget> {
         children: [
           Icon(
             Icons.info_rounded,
-            color: FlutterFlowTheme.of(context).secondaryText,
-            size: 36.0,
+            color: Color(0xFFBEC6CF),
+            size: 36,
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
             child: Text(
               'ไม่มีข้อมูล',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyText1.override(
-                    fontFamily: 'Kanit',
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    fontSize: 18.0,
-                  ),
+                fontFamily: 'Kanit',
+                color: Color(0xFFBEC6CF),
+                fontSize: 18,
+              ),
             ),
           ),
         ],

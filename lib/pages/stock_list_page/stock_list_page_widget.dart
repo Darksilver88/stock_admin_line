@@ -334,7 +334,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                 Padding(
                                                   padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                                                   child: Text(
-                                                    'ระบบจะส่งการแจ้งเตือนไปยังลูกบ้าน',
+                                                    'ส่งแจ้งเตือนไปยังลูกบ้าน',
                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                           fontFamily: 'Kanit',
                                                           fontSize: 18,
@@ -344,9 +344,26 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                 Padding(
                                                   padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
                                                   child: FFButtonWidget(
-                                                    onPressed: () {
-                                                      print('Button pressed ...');
-                                                      print(FFAppState().stockChecked);
+                                                    onPressed: () async {
+                                                      await actions.sendNotificationToMember();
+                                                      print('finish');
+                                                      FFAppState().update(() {
+                                                        FFAppState().stockChecked = [];
+                                                        FFAppState().isBottomSheetShow = false;
+                                                      });
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'ส่งแจ้งเตือนไปยังลูกบ้านแล้ว',
+                                                            style: TextStyle(
+                                                              color: Colors.white,
+                                                              fontWeight: FontWeight.w500,
+                                                            ),
+                                                          ),
+                                                          duration: Duration(milliseconds: 4000),
+                                                          backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+                                                        ),
+                                                      );
                                                     },
                                                     text: 'ตกลง',
                                                     options: FFButtonOptions(
@@ -379,10 +396,11 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                 stream: queryStockListRecord(
                                   queryBuilder: (stockListRecord) => stockListRecord
                                       .where('status',
-                                          isEqualTo: valueOrDefault<int>(
+                                          isNotEqualTo: valueOrDefault<int>(
                                             null,
-                                            2,
+                                            1,
                                           ))
+                                      .orderBy('status')
                                       .orderBy('create_date', descending: true),
                                 ),
                                 builder: (context, snapshot) {
@@ -523,38 +541,42 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                               mainAxisSize: MainAxisSize.max,
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text(
-                                                                  valueOrDefault<String>(
-                                                                    functions.getStockStatus(listViewStockListRecord.status),
-                                                                    '-',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                        fontFamily: 'Kanit',
-                                                                        color: () {
-                                                                          if (listViewStockListRecord.status == 2) {
-                                                                            return Color(0xFFE98A15);
-                                                                          } else if (listViewStockListRecord.status == 3) {
-                                                                            return FlutterFlowTheme.of(context).secondaryColor;
-                                                                          } else {
-                                                                            return Colors.black;
-                                                                          }
-                                                                        }(),
-                                                                      ),
-                                                                ),
+                                                                FutureBuilder(
+                                                                    future: functions.getStockStatus(listViewStockListRecord.status),
+                                                                    builder: (context, snapshot) {
+                                                                      if (!snapshot.hasData) {
+                                                                        return Container();
+                                                                      }
+                                                                      return Text(
+                                                                        snapshot.data.toString(),
+                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                              fontFamily: 'Kanit',
+                                                                              color: () {
+                                                                                if (listViewStockListRecord.status == 2) {
+                                                                                  return Color(0xFFE98A15);
+                                                                                } else if (listViewStockListRecord.status == 3) {
+                                                                                  return FlutterFlowTheme.of(context).secondaryColor;
+                                                                                } else {
+                                                                                  return Colors.black;
+                                                                                }
+                                                                              }(),
+                                                                            ),
+                                                                      );
+                                                                    }),
                                                                 if (listViewStockListRecord.status == 3)
                                                                   Text(
                                                                     ' เมื่อ ',
                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                           fontFamily: 'Kanit',
-                                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                                          color: Color(0xFFBEC6CF),
                                                                         ),
                                                                   ),
                                                                 if (listViewStockListRecord.status == 3)
                                                                   Text(
-                                                                    dateTimeFormat('d/M H:mm', listViewStockListRecord.updateDate!),
+                                                                    dateTimeFormat('d/M/y H:mm', listViewStockListRecord.updateDate!),
                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                           fontFamily: 'Kanit',
-                                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                                          color: Color(0xFFBEC6CF),
                                                                         ),
                                                                   ),
                                                               ],
