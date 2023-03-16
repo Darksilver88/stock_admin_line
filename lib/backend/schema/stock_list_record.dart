@@ -36,6 +36,8 @@ abstract class StockListRecord
   @BuiltValueField(wireName: 'update_by')
   DocumentReference? get updateBy;
 
+  int? get readStatus;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -45,7 +47,8 @@ abstract class StockListRecord
     ..code = ''
     ..receiveName = ''
     ..trackingCode = ''
-    ..roomNo = '';
+    ..roomNo = ''
+    ..readStatus = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/stock/data/stock_list');
@@ -79,6 +82,7 @@ Map<String, dynamic> createStockListRecordData({
   DocumentReference? memberRef,
   DateTime? updateDate,
   DocumentReference? updateBy,
+  int? readStatus,
 }) {
   final firestoreData = serializers.toFirestore(
     StockListRecord.serializer,
@@ -93,7 +97,8 @@ Map<String, dynamic> createStockListRecordData({
         ..roomNo = roomNo
         ..memberRef = memberRef
         ..updateDate = updateDate
-        ..updateBy = updateBy,
+        ..updateBy = updateBy
+        ..readStatus = readStatus,
     ),
   );
 
