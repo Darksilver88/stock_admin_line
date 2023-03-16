@@ -68,6 +68,14 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.createBy;
+    if (value != null) {
+      result
+        ..add('create_by')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -119,6 +127,12 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
           result.roomNo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'create_by':
+          result.createBy = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -148,6 +162,8 @@ class _$MemberRecord extends MemberRecord {
   @override
   final String? roomNo;
   @override
+  final DocumentReference<Object?>? createBy;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$MemberRecord([void Function(MemberRecordBuilder)? updates]) =>
@@ -161,6 +177,7 @@ class _$MemberRecord extends MemberRecord {
       this.lastName,
       this.fullName,
       this.roomNo,
+      this.createBy,
       this.ffRef})
       : super._();
 
@@ -182,6 +199,7 @@ class _$MemberRecord extends MemberRecord {
         lastName == other.lastName &&
         fullName == other.fullName &&
         roomNo == other.roomNo &&
+        createBy == other.createBy &&
         ffRef == other.ffRef;
   }
 
@@ -192,12 +210,16 @@ class _$MemberRecord extends MemberRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, createDate.hashCode), status.hashCode),
-                            userRole.hashCode),
-                        firstName.hashCode),
-                    lastName.hashCode),
-                fullName.hashCode),
-            roomNo.hashCode),
+                        $jc(
+                            $jc(
+                                $jc($jc(0, createDate.hashCode),
+                                    status.hashCode),
+                                userRole.hashCode),
+                            firstName.hashCode),
+                        lastName.hashCode),
+                    fullName.hashCode),
+                roomNo.hashCode),
+            createBy.hashCode),
         ffRef.hashCode));
   }
 
@@ -211,6 +233,7 @@ class _$MemberRecord extends MemberRecord {
           ..add('lastName', lastName)
           ..add('fullName', fullName)
           ..add('roomNo', roomNo)
+          ..add('createBy', createBy)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -248,6 +271,11 @@ class MemberRecordBuilder
   String? get roomNo => _$this._roomNo;
   set roomNo(String? roomNo) => _$this._roomNo = roomNo;
 
+  DocumentReference<Object?>? _createBy;
+  DocumentReference<Object?>? get createBy => _$this._createBy;
+  set createBy(DocumentReference<Object?>? createBy) =>
+      _$this._createBy = createBy;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -266,6 +294,7 @@ class MemberRecordBuilder
       _lastName = $v.lastName;
       _fullName = $v.fullName;
       _roomNo = $v.roomNo;
+      _createBy = $v.createBy;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -296,6 +325,7 @@ class MemberRecordBuilder
             lastName: lastName,
             fullName: fullName,
             roomNo: roomNo,
+            createBy: createBy,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
