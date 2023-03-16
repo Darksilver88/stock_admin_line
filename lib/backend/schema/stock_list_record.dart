@@ -33,7 +33,7 @@ abstract class StockListRecord
   DateTime? get updateDate;
 
   @BuiltValueField(wireName: 'update_by')
-  DateTime? get updateBy;
+  DocumentReference? get updateBy;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -77,7 +77,7 @@ Map<String, dynamic> createStockListRecordData({
   String? roomNo,
   DocumentReference? memberRef,
   DateTime? updateDate,
-  DateTime? updateBy,
+  DocumentReference? updateBy,
 }) {
   final firestoreData = serializers.toFirestore(
     StockListRecord.serializer,
