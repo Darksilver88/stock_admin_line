@@ -90,7 +90,8 @@ class _$StockListRecordSerializer
       result
         ..add('update_by')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -157,7 +158,9 @@ class _$StockListRecordSerializer
           break;
         case 'update_by':
           result.updateBy = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -192,7 +195,7 @@ class _$StockListRecord extends StockListRecord {
   @override
   final DateTime? updateDate;
   @override
-  final DateTime? updateBy;
+  final DocumentReference<Object?>? updateBy;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -322,9 +325,10 @@ class StockListRecordBuilder
   DateTime? get updateDate => _$this._updateDate;
   set updateDate(DateTime? updateDate) => _$this._updateDate = updateDate;
 
-  DateTime? _updateBy;
-  DateTime? get updateBy => _$this._updateBy;
-  set updateBy(DateTime? updateBy) => _$this._updateBy = updateBy;
+  DocumentReference<Object?>? _updateBy;
+  DocumentReference<Object?>? get updateBy => _$this._updateBy;
+  set updateBy(DocumentReference<Object?>? updateBy) =>
+      _$this._updateBy = updateBy;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
