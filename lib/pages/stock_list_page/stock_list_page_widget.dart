@@ -218,7 +218,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                     child:
                                                                         Container(
                                                                       height:
-                                                                          300.0,
+                                                                          150.0,
                                                                       child:
                                                                           NotificationConfirmBottomSheetWidget(),
                                                                     ),
