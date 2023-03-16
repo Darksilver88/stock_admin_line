@@ -39,7 +39,7 @@ abstract class StockListRecord
     ..roomNo = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('stock_list');
+      FirebaseFirestore.instance.collection('kconnect/Koder3/stock/data/stock_list');
 
   static Stream<StockListRecord> getDocument(DocumentReference ref) => ref
       .snapshots()

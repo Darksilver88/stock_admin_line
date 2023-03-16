@@ -38,7 +38,7 @@ abstract class MemberRecord
     ..roomNo = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('member');
+      FirebaseFirestore.instance.collection('kconnect/Koder3/member');
 
   static Stream<MemberRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
