@@ -28,7 +28,7 @@ class StockEditDetailViewModel extends FlutterFlowModel {
   String? receiveNameSelectedOption;
   String? Function(BuildContext, String?)? receiveNameControllerValidator;
   // Stores action output result for [Custom Action - checkMemberIsExit] action in Button widget.
-  bool? isMemberExit;
+  dynamic isMemberExit;
 
   /// Initialization and disposal methods.
 

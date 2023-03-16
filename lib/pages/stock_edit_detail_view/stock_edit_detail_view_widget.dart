@@ -325,12 +325,13 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   _model.receiveNameController.text,
                                 );
                                 _shouldSetState = true;
-                                if (_model.isMemberExit!) {
+                                if (_model.isMemberExit != null) {
                                   final stockListUpdateData = createStockListRecordData(
                                     updateDate: getCurrentTimestamp,
                                     receiveName: _model.receiveNameController.text,
                                     trackingCode: _model.trackingCodeController.text,
                                     roomNo: _model.roomNoController.text,
+                                    memberRef: _model.isMemberExit,
                                   );
                                   await widget.stockParameter!.reference.update(stockListUpdateData);
                                   ScaffoldMessenger.of(context).showSnackBar(
