@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/stock_list_record.dart';
 import 'schema/member_record.dart';
 import 'schema/prefix_tracking_code_record.dart';
+import 'schema/stock_status_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -18,6 +19,7 @@ export 'schema/serializers.dart';
 export 'schema/stock_list_record.dart';
 export 'schema/member_record.dart';
 export 'schema/prefix_tracking_code_record.dart';
+export 'schema/stock_status_record.dart';
 
 /// Functions to query StockListRecords (as a Stream and as a Future).
 Future<int> queryStockListRecordCount({
@@ -175,6 +177,58 @@ Future<FFFirestorePage<PrefixTrackingCodeRecord>>
           pageSize: pageSize,
           isStream: isStream,
         );
+
+/// Functions to query StockStatusRecords (as a Stream and as a Future).
+Future<int> queryStockStatusRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      StockStatusRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<StockStatusRecord>> queryStockStatusRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      StockStatusRecord.collection,
+      StockStatusRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<StockStatusRecord>> queryStockStatusRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      StockStatusRecord.collection,
+      StockStatusRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<StockStatusRecord>> queryStockStatusRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      StockStatusRecord.collection,
+      StockStatusRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 Future<int> queryCollectionCount(
   Query collection, {
