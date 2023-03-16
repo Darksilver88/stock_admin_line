@@ -93,6 +93,12 @@ class _$StockListRecordSerializer
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
+    value = object.readStatus;
+    if (value != null) {
+      result
+        ..add('readStatus')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -162,6 +168,10 @@ class _$StockListRecordSerializer
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
+        case 'readStatus':
+          result.readStatus = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -197,6 +207,8 @@ class _$StockListRecord extends StockListRecord {
   @override
   final DocumentReference<Object?>? updateBy;
   @override
+  final int? readStatus;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StockListRecord([void Function(StockListRecordBuilder)? updates]) =>
@@ -213,6 +225,7 @@ class _$StockListRecord extends StockListRecord {
       this.memberRef,
       this.updateDate,
       this.updateBy,
+      this.readStatus,
       this.ffRef})
       : super._();
 
@@ -238,6 +251,7 @@ class _$StockListRecord extends StockListRecord {
         memberRef == other.memberRef &&
         updateDate == other.updateDate &&
         updateBy == other.updateBy &&
+        readStatus == other.readStatus &&
         ffRef == other.ffRef;
   }
 
@@ -252,16 +266,18 @@ class _$StockListRecord extends StockListRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, createDate.hashCode),
-                                            createBy.hashCode),
-                                        status.hashCode),
-                                    code.hashCode),
-                                receiveName.hashCode),
-                            trackingCode.hashCode),
-                        roomNo.hashCode),
-                    memberRef.hashCode),
-                updateDate.hashCode),
-            updateBy.hashCode),
+                                        $jc(
+                                            $jc($jc(0, createDate.hashCode),
+                                                createBy.hashCode),
+                                            status.hashCode),
+                                        code.hashCode),
+                                    receiveName.hashCode),
+                                trackingCode.hashCode),
+                            roomNo.hashCode),
+                        memberRef.hashCode),
+                    updateDate.hashCode),
+                updateBy.hashCode),
+            readStatus.hashCode),
         ffRef.hashCode));
   }
 
@@ -278,6 +294,7 @@ class _$StockListRecord extends StockListRecord {
           ..add('memberRef', memberRef)
           ..add('updateDate', updateDate)
           ..add('updateBy', updateBy)
+          ..add('readStatus', readStatus)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -330,6 +347,10 @@ class StockListRecordBuilder
   set updateBy(DocumentReference<Object?>? updateBy) =>
       _$this._updateBy = updateBy;
 
+  int? _readStatus;
+  int? get readStatus => _$this._readStatus;
+  set readStatus(int? readStatus) => _$this._readStatus = readStatus;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -351,6 +372,7 @@ class StockListRecordBuilder
       _memberRef = $v.memberRef;
       _updateDate = $v.updateDate;
       _updateBy = $v.updateBy;
+      _readStatus = $v.readStatus;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -384,6 +406,7 @@ class StockListRecordBuilder
             memberRef: memberRef,
             updateDate: updateDate,
             updateBy: updateBy,
+            readStatus: readStatus,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

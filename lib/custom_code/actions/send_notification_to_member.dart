@@ -14,6 +14,7 @@ Future<bool> sendNotificationToMember() async {
   for (var i = 0; i < FFAppState().stockChecked.length; i++) {
     await FirebaseFirestore.instance.doc(FFAppState().stockChecked[i].path).update({
       'status': 2,
+      'readStatus': 0,
       'update_date': getCurrentTimestamp,
     });
   }
