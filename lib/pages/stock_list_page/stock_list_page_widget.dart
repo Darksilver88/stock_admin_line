@@ -433,7 +433,9 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         size: 30.0,
                                       ),
                                       onPressed: () async {
-                                        var res = await Navigator.push(
+                                        context.pushNamed('QRScanPage');
+
+                                        /*var res = await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) => const SimpleBarcodeScannerPage(
@@ -447,7 +449,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                           }
                                           print("_model.textQR");
                                           print(_model.textQR);
-                                        });
+                                        });*/
                                       },
                                     ),
                                   ),

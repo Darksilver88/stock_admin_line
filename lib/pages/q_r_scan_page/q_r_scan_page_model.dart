@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 
 class QRScanPageModel extends FlutterFlowModel {
   /// Initialization and disposal methods.
+  String textQR = '';
+  String textStatus = 'กำลังโหลดข้อมูล...';
+  String status = '';
 
   void initState(BuildContext context) {}
 
