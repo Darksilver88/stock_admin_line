@@ -395,7 +395,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                       ],
                                     ),
 
-                                 /* Align(
+                                  Align(
                                     alignment: AlignmentDirectional(1, 1),
                                     child: FlutterFlowIconButton(
                                       borderColor: Colors.transparent,
@@ -450,7 +450,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         });
                                       },
                                     ),
-                                  ),*/
+                                  ),
                                 ],
                               ),
                               StreamBuilder<List<StockListRecord>>(
