@@ -102,6 +102,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'StockListPage',
           path: '/stockListPage',
           builder: (context, params) => StockListPageWidget(),
+        ),
+        FFRoute(
+          name: 'QRScanPage',
+          path: '/qRScanPage',
+          builder: (context, params) => QRScanPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       urlPathStrategy: UrlPathStrategy.path,

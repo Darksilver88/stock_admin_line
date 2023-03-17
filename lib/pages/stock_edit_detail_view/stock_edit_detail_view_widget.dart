@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'stock_edit_detail_view_model.dart';
@@ -35,6 +36,15 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => StockEditDetailViewModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget.stockParameter == null) {
+        context.goNamed('StockListPage');
+
+        return;
+      }
+    });
 
     _model.trackingCodeController ??=
         TextEditingController(text: widget.stockParameter!.trackingCode);

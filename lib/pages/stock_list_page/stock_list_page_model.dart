@@ -11,7 +11,6 @@ import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +22,6 @@ class StockListPageModel extends FlutterFlowModel {
   Map<StockListRecord, bool> checkboxValueMap = {};
   List<StockListRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
-
-  var textQR = '';
 
   /// Initialization and disposal methods.
 
