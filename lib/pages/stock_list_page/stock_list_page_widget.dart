@@ -74,7 +74,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                               text: 'รอจัดการพัสดุ',
                             ),
                             Tab(
-                              text: 'แจ้งลูกบ้านแล้ว',
+                              text: 'ประวัติ',
                             ),
                           ],
                         ),
@@ -568,6 +568,24 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         await StockListRecord.collection
                                             .doc()
                                             .set(stockListCreateData);
+                                      },
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 1.0),
+                                    child: FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 30.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 60.0,
+                                      icon: Icon(
+                                        Icons.camera_alt,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 30.0,
+                                      ),
+                                      onPressed: () async {
+                                        context.pushNamed('QRScanPage');
                                       },
                                     ),
                                   ),
