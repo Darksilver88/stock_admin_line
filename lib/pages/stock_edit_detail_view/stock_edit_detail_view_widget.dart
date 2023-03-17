@@ -372,6 +372,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                         trackingCode: _model.trackingCodeController.text,
                                         roomNo: _model.roomNoController.text,
                                         memberRef: _model.isMemberExit,
+                                        qrCode: 'stock_' + widget.stockParameter!.code! + '_' + _model.isMemberExit.toString()
                                       );
                                       await widget.stockParameter!.reference.update(stockListUpdateData);
                                       ScaffoldMessenger.of(context).showSnackBar(
