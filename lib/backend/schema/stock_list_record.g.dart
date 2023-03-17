@@ -99,6 +99,13 @@ class _$StockListRecordSerializer
         ..add('readStatus')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.ocrDetail;
+    if (value != null) {
+      result
+        ..add('ocrDetail')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -172,6 +179,10 @@ class _$StockListRecordSerializer
           result.readStatus = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'ocrDetail':
+          result.ocrDetail = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -209,6 +220,8 @@ class _$StockListRecord extends StockListRecord {
   @override
   final int? readStatus;
   @override
+  final String? ocrDetail;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StockListRecord([void Function(StockListRecordBuilder)? updates]) =>
@@ -226,6 +239,7 @@ class _$StockListRecord extends StockListRecord {
       this.updateDate,
       this.updateBy,
       this.readStatus,
+      this.ocrDetail,
       this.ffRef})
       : super._();
 
@@ -252,6 +266,7 @@ class _$StockListRecord extends StockListRecord {
         updateDate == other.updateDate &&
         updateBy == other.updateBy &&
         readStatus == other.readStatus &&
+        ocrDetail == other.ocrDetail &&
         ffRef == other.ffRef;
   }
 
@@ -267,17 +282,19 @@ class _$StockListRecord extends StockListRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc($jc(0, createDate.hashCode),
-                                                createBy.hashCode),
-                                            status.hashCode),
-                                        code.hashCode),
-                                    receiveName.hashCode),
-                                trackingCode.hashCode),
-                            roomNo.hashCode),
-                        memberRef.hashCode),
-                    updateDate.hashCode),
-                updateBy.hashCode),
-            readStatus.hashCode),
+                                            $jc(
+                                                $jc($jc(0, createDate.hashCode),
+                                                    createBy.hashCode),
+                                                status.hashCode),
+                                            code.hashCode),
+                                        receiveName.hashCode),
+                                    trackingCode.hashCode),
+                                roomNo.hashCode),
+                            memberRef.hashCode),
+                        updateDate.hashCode),
+                    updateBy.hashCode),
+                readStatus.hashCode),
+            ocrDetail.hashCode),
         ffRef.hashCode));
   }
 
@@ -295,6 +312,7 @@ class _$StockListRecord extends StockListRecord {
           ..add('updateDate', updateDate)
           ..add('updateBy', updateBy)
           ..add('readStatus', readStatus)
+          ..add('ocrDetail', ocrDetail)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -351,6 +369,10 @@ class StockListRecordBuilder
   int? get readStatus => _$this._readStatus;
   set readStatus(int? readStatus) => _$this._readStatus = readStatus;
 
+  String? _ocrDetail;
+  String? get ocrDetail => _$this._ocrDetail;
+  set ocrDetail(String? ocrDetail) => _$this._ocrDetail = ocrDetail;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -373,6 +395,7 @@ class StockListRecordBuilder
       _updateDate = $v.updateDate;
       _updateBy = $v.updateBy;
       _readStatus = $v.readStatus;
+      _ocrDetail = $v.ocrDetail;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -407,6 +430,7 @@ class StockListRecordBuilder
             updateDate: updateDate,
             updateBy: updateBy,
             readStatus: readStatus,
+            ocrDetail: ocrDetail,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

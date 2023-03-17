@@ -4,3 +4,4 @@ export '/pages/stock_edit_detail_view/stock_edit_detail_view_widget.dart'
     show StockEditDetailViewWidget;
 export '/pages/stock_list_page/stock_list_page_widget.dart'
     show StockListPageWidget;
+export '/pages/q_r_scan_page/q_r_scan_page_widget.dart' show QRScanPageWidget;
