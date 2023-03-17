@@ -1,3 +1,6 @@
+import 'package:simple_barcode_scanner/enum.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+
 import '../../flutter_flow/flutter_flow_icon_button.dart';
 import '/backend/backend.dart';
 import '/components/no_data_widget.dart';
@@ -415,7 +418,38 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         await StockListRecord.collection.doc().set(stockListCreateData);
                                       },
                                     ),
-                                  )
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 1.0),
+                                    child: FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 30.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 60.0,
+                                      icon: Icon(
+                                        Icons.camera_alt,
+                                        color: FlutterFlowTheme.of(context).primaryText,
+                                        size: 30.0,
+                                      ),
+                                      onPressed: () async {
+                                        var res = await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => const SimpleBarcodeScannerPage(
+                                                appBarTitle: 'Scan QR Code',
+                                                scanType: ScanType.qr,
+                                              ),
+                                            ));
+                                        setState(() {
+                                          if (res is String) {
+                                            _model.textQR = res;
+                                          }
+                                          print("_model.textQR");
+                                          print(_model.textQR);
+                                        });
+                                      },
+                                    ),
+                                  ),
                                 ],
                               ),
                               StreamBuilder<List<StockListRecord>>(
