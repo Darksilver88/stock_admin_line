@@ -72,7 +72,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                               text: 'รอจัดการพัสดุ',
                             ),
                             Tab(
-                              text: 'แจ้งลูกบ้านแล้ว',
+                              text: 'ประวัติ',
                             ),
                           ],
                         ),
