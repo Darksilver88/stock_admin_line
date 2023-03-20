@@ -108,6 +108,24 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
         });
         showStatus('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
         return;
+      }else if(_model.textQR.contains('member_')){
+
+        if (_model.textQR.split('_').length != 2) {
+          print("case b1");
+          showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
+          return;
+        }
+
+        // เปลี่ยนสถานะ
+        var tmpMember = _model.textQR.split('_');
+        FirebaseFirestore.instance.doc(tmpMember[1]).update({
+          'status': 1,
+          'update_by': FFAppState().currentAdminMember,
+          'update_date': getCurrentTimestamp,
+        });
+        showStatus('success', 'ยืนยันข้อมูลเรียบร้อยแล้ว');
+        return;
+
       }
 
       showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
