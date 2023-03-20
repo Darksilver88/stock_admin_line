@@ -394,7 +394,6 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         ),
                                       ],
                                     ),
-
                                   Align(
                                     alignment: AlignmentDirectional(1, 1),
                                     child: FlutterFlowIconButton(
@@ -408,9 +407,11 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         size: 30,
                                       ),
                                       onPressed: () async {
+                                        var runCodeNumber = await functions.runCodeNumber();
                                         final stockListCreateData = createStockListRecordData(
                                           createDate: getCurrentTimestamp,
-                                          code: random_data.randomInteger(0, 100000).toString(),
+                                          //code: random_data.randomInteger(0, 100000).toString(),
+                                          code: runCodeNumber,
                                           status: 1,
                                           roomNo: '',
                                           receiveName: '',

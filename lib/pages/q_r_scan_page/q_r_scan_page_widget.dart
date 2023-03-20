@@ -52,27 +52,67 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
     super.dispose();
   }
 
-  setData(res) {
-    print("setData");
+  showStatus(status, textStatus) {
     setState(() {
-      if (res is String) {
-        _model.textQR = res;
-        if (_model.textQR == '') {
-          _model.status = 'failed';
-          _model.textStatus = 'ไม่พบข้อมูลกรุณาลองอีกครั้ง';
-        } else {
-
-          //เช็ครูปแบบ QR Code
-
-
-          _model.status = 'success';
-          _model.textStatus = 'บันทึกข้อมูลเรียบร้อยแล้ว';
-
-
-
-        }
-      }
+      _model.status = status;
+      _model.textStatus = textStatus;
     });
+  }
+
+  setData(res) async {
+    print("setData");
+    if (res is String) {
+      _model.textQR = res;
+      print(_model.textQR);
+      if (_model.textQR == '') {
+        showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
+        return;
+      }
+
+      //เช็ครูปแบบ QR Code
+      if (_model.textQR.contains('stock_')) {
+        if (_model.textQR.split('_').length != 3) {
+          print("case b");
+          showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
+          return;
+        }
+
+        var rsMember = await FirebaseFirestore.instance.doc(_model.textQR.split('_')[2]).get();
+        if (!rsMember.exists) {
+          print("case c");
+          showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
+          return;
+        }
+
+        var tmpStock = _model.textQR.split('_')[2].split('/');
+        var stockPath = tmpStock[0] + '/' + tmpStock[1] + '/stock/data/stock_list';
+        var rsStock = await FirebaseFirestore.instance.collection(stockPath).where('code', isEqualTo: _model.textQR.split('_')[1]).get();
+        if (rsStock.docs.isEmpty) {
+          print("case d");
+          showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
+          return;
+        }
+
+        if (rsStock.docs[0].data()["status"] == 3) {
+          print("case e");
+          showStatus('warning', 'พัสดุชิ้นนี้ถูกจ่ายไปแล้ว');
+          return;
+        }
+
+        //เปลี่ยนสถานะ
+        print(rsStock.docs[0].reference.path);
+        FirebaseFirestore.instance.doc(rsStock.docs[0].reference.path).update({
+          'status': 3,
+          'update_by': FFAppState().currentAdminMember,
+          'update_date': getCurrentTimestamp,
+        });
+        showStatus('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
+        return;
+      }
+
+      showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
+      return;
+    }
   }
 
   @override
@@ -109,6 +149,12 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
                       color: Color(0xFFD83333),
                       size: 128.0,
                     ),
+                  if (_model.status == "warning")
+                    Icon(
+                      Icons.info,
+                      color: Color(0xFFF58800),
+                      size: 128.0,
+                    ),
                 ],
               ),
               Text(
@@ -119,35 +165,35 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
                     ),
               ),
               if (_model.status != "")
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    context.safePop();
-                  },
-                  text: 'กลับ',
-                  icon: Icon(
-                    Icons.chevron_left_rounded,
-                    size: 15,
-                  ),
-                  options: FFButtonOptions(
-                    width: 130,
-                    height: 40,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: FlutterFlowTheme.of(context).primaryColor,
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Kanit',
-                          color: Colors.white,
-                        ),
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      context.safePop();
+                    },
+                    text: 'กลับ',
+                    icon: Icon(
+                      Icons.chevron_left_rounded,
+                      size: 15,
                     ),
-                    borderRadius: BorderRadius.circular(8),
+                    options: FFButtonOptions(
+                      width: 130,
+                      height: 40,
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                            fontFamily: 'Kanit',
+                            color: Colors.white,
+                          ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
         ),
