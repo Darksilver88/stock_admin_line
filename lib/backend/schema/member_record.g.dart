@@ -76,6 +76,13 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
+    value = object.prefixName;
+    if (value != null) {
+      result
+        ..add('prefixName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -133,6 +140,10 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
+        case 'prefixName':
+          result.prefixName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -164,6 +175,8 @@ class _$MemberRecord extends MemberRecord {
   @override
   final DocumentReference<Object?>? createBy;
   @override
+  final String? prefixName;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$MemberRecord([void Function(MemberRecordBuilder)? updates]) =>
@@ -178,6 +191,7 @@ class _$MemberRecord extends MemberRecord {
       this.fullName,
       this.roomNo,
       this.createBy,
+      this.prefixName,
       this.ffRef})
       : super._();
 
@@ -200,6 +214,7 @@ class _$MemberRecord extends MemberRecord {
         fullName == other.fullName &&
         roomNo == other.roomNo &&
         createBy == other.createBy &&
+        prefixName == other.prefixName &&
         ffRef == other.ffRef;
   }
 
@@ -212,14 +227,16 @@ class _$MemberRecord extends MemberRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, createDate.hashCode),
-                                    status.hashCode),
-                                userRole.hashCode),
-                            firstName.hashCode),
-                        lastName.hashCode),
-                    fullName.hashCode),
-                roomNo.hashCode),
-            createBy.hashCode),
+                                $jc(
+                                    $jc($jc(0, createDate.hashCode),
+                                        status.hashCode),
+                                    userRole.hashCode),
+                                firstName.hashCode),
+                            lastName.hashCode),
+                        fullName.hashCode),
+                    roomNo.hashCode),
+                createBy.hashCode),
+            prefixName.hashCode),
         ffRef.hashCode));
   }
 
@@ -234,6 +251,7 @@ class _$MemberRecord extends MemberRecord {
           ..add('fullName', fullName)
           ..add('roomNo', roomNo)
           ..add('createBy', createBy)
+          ..add('prefixName', prefixName)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -276,6 +294,10 @@ class MemberRecordBuilder
   set createBy(DocumentReference<Object?>? createBy) =>
       _$this._createBy = createBy;
 
+  String? _prefixName;
+  String? get prefixName => _$this._prefixName;
+  set prefixName(String? prefixName) => _$this._prefixName = prefixName;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -295,6 +317,7 @@ class MemberRecordBuilder
       _fullName = $v.fullName;
       _roomNo = $v.roomNo;
       _createBy = $v.createBy;
+      _prefixName = $v.prefixName;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -326,6 +349,7 @@ class MemberRecordBuilder
             fullName: fullName,
             roomNo: roomNo,
             createBy: createBy,
+            prefixName: prefixName,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

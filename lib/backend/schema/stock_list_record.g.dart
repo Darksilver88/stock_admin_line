@@ -106,6 +106,13 @@ class _$StockListRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.qrCode;
+    if (value != null) {
+      result
+        ..add('qrCode')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -183,6 +190,10 @@ class _$StockListRecordSerializer
           result.ocrDetail = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'qrCode':
+          result.qrCode = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -222,6 +233,8 @@ class _$StockListRecord extends StockListRecord {
   @override
   final String? ocrDetail;
   @override
+  final String? qrCode;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StockListRecord([void Function(StockListRecordBuilder)? updates]) =>
@@ -240,6 +253,7 @@ class _$StockListRecord extends StockListRecord {
       this.updateBy,
       this.readStatus,
       this.ocrDetail,
+      this.qrCode,
       this.ffRef})
       : super._();
 
@@ -267,6 +281,7 @@ class _$StockListRecord extends StockListRecord {
         updateBy == other.updateBy &&
         readStatus == other.readStatus &&
         ocrDetail == other.ocrDetail &&
+        qrCode == other.qrCode &&
         ffRef == other.ffRef;
   }
 
@@ -283,18 +298,24 @@ class _$StockListRecord extends StockListRecord {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, createDate.hashCode),
-                                                    createBy.hashCode),
-                                                status.hashCode),
-                                            code.hashCode),
-                                        receiveName.hashCode),
-                                    trackingCode.hashCode),
-                                roomNo.hashCode),
-                            memberRef.hashCode),
-                        updateDate.hashCode),
-                    updateBy.hashCode),
-                readStatus.hashCode),
-            ocrDetail.hashCode),
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            0,
+                                                            createDate
+                                                                .hashCode),
+                                                        createBy.hashCode),
+                                                    status.hashCode),
+                                                code.hashCode),
+                                            receiveName.hashCode),
+                                        trackingCode.hashCode),
+                                    roomNo.hashCode),
+                                memberRef.hashCode),
+                            updateDate.hashCode),
+                        updateBy.hashCode),
+                    readStatus.hashCode),
+                ocrDetail.hashCode),
+            qrCode.hashCode),
         ffRef.hashCode));
   }
 
@@ -313,6 +334,7 @@ class _$StockListRecord extends StockListRecord {
           ..add('updateBy', updateBy)
           ..add('readStatus', readStatus)
           ..add('ocrDetail', ocrDetail)
+          ..add('qrCode', qrCode)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -373,6 +395,10 @@ class StockListRecordBuilder
   String? get ocrDetail => _$this._ocrDetail;
   set ocrDetail(String? ocrDetail) => _$this._ocrDetail = ocrDetail;
 
+  String? _qrCode;
+  String? get qrCode => _$this._qrCode;
+  set qrCode(String? qrCode) => _$this._qrCode = qrCode;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -396,6 +422,7 @@ class StockListRecordBuilder
       _updateBy = $v.updateBy;
       _readStatus = $v.readStatus;
       _ocrDetail = $v.ocrDetail;
+      _qrCode = $v.qrCode;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -431,6 +458,7 @@ class StockListRecordBuilder
             updateBy: updateBy,
             readStatus: readStatus,
             ocrDetail: ocrDetail,
+            qrCode: qrCode,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
