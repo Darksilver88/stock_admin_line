@@ -27,7 +27,7 @@ abstract class StockStatusRecord
     ..nameAdmin = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('stock_status');
+      FirebaseFirestore.instance.collection('kconnect_config/config/stock_status');
 
   static Stream<StockStatusRecord> getDocument(DocumentReference ref) => ref
       .snapshots()

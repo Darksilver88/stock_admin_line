@@ -108,24 +108,47 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
         });
         showStatus('success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
         return;
-      }else if(_model.textQR.contains('member_')){
-
+      } else if (_model.textQR.contains('member_')) {
         if (_model.textQR.split('_').length != 2) {
           print("case b1");
           showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
           return;
         }
 
-        // เปลี่ยนสถานะ
+        // ดึงข้อมูล
         var tmpMember = _model.textQR.split('_');
-        FirebaseFirestore.instance.doc(tmpMember[1]).update({
+        var memberResult = await FirebaseFirestore.instance.doc(tmpMember[1]).get();
+
+        // ถ้าเคยสแกนแล้ว
+        if (memberResult.data()!["status"] == 1) {
+          print("case b2");
+          showStatus('success', 'ยืนยันข้อมูลเรียบร้อยแล้ว');
+          return;
+        }
+
+        // ไปสร้างข้อมูลใน kconnect/(customerของตัวแอดมินที่เป็นคนสแกน)/
+        FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/member').add({
+          'roomNo': memberResult.data()!["roomNo"],
+          'prefixName': memberResult.data()!["prefixName"],
+          'firstName': memberResult.data()!["firstName"],
+          'lastName': memberResult.data()!["lastName"],
+          'fullName': memberResult.data()!["fullName"],
+          'userRole': 'ลูกบ้าน',
           'status': 1,
-          'update_by': FFAppState().currentAdminMember,
-          'update_date': getCurrentTimestamp,
+          'create_by': FFAppState().currentAdminMember,
+          'create_date': getCurrentTimestamp,
+        }).then((value) {
+          // เปลี่ยนสถานะ
+          FirebaseFirestore.instance.doc(tmpMember[1]).update({
+            'status': 1,
+            'update_by': FFAppState().currentAdminMember,
+            'update_date': getCurrentTimestamp,
+            'customerPath': value.path,
+          });
         });
+
         showStatus('success', 'ยืนยันข้อมูลเรียบร้อยแล้ว');
         return;
-
       }
 
       showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');

@@ -359,9 +359,9 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                         SnackBar(
                                                           content: Text(
                                                             'ส่งแจ้งเตือนไปยังลูกบ้านแล้ว',
-                                                            style: TextStyle(
+                                                            style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                              fontFamily: 'Kanit',
                                                               color: Colors.white,
-                                                              fontWeight: FontWeight.w500,
                                                             ),
                                                           ),
                                                           duration: Duration(milliseconds: 4000),
@@ -465,7 +465,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                             1,
                                           ))
                                       .orderBy('status')
-                                      .orderBy('create_date', descending: true),
+                                      .orderBy('update_date', descending: true),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
