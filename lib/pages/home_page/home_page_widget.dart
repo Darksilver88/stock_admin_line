@@ -50,9 +50,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
       // updateCurrentAdminMember
       // ค่านี้ต้องมาจากไลน์ เมื่อสามารถ ผูก user นิติ กับ ไลน์ OA ได้แล้ว
-      var rs = await FirebaseFirestore.instance.doc('kconnect/Koder3/member/FpHHryGD1d8qeV4FmvLd').get();
+      var rs = await FirebaseFirestore.instance.doc('kconnect/คอนโดหลังวัด/member/82yo7hV4EsBVtOjMy2Ns').get();
       FFAppState().currentAdminMember = rs.reference;
-      FFAppState().customerName = 'Koder3';
+      FFAppState().customerName = 'คอนโดหลังวัด';
 
       context.goNamedAuth('StockListPage', mounted);
     });

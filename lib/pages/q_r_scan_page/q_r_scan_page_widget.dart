@@ -126,8 +126,12 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
           return;
         }
 
+        // แสดงข้อมูลให้นิติเห็นก่อน
+        showStatus('info', '');
+        return;
+
         // ไปสร้างข้อมูลใน kconnect/(customerของตัวแอดมินที่เป็นคนสแกน)/
-        FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/member').add({
+        /*FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/member').add({
           'roomNo': memberResult.data()!["roomNo"],
           'prefixName': memberResult.data()!["prefixName"],
           'firstName': memberResult.data()!["firstName"],
@@ -138,6 +142,14 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
           'create_by': FFAppState().currentAdminMember,
           'create_date': getCurrentTimestamp,
         }).then((value) {
+
+          //เพิ่ม k-connect-activate ไว้เข้าครั้งถัดไป
+          FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/k-connect-activate').doc(value.id).set({
+            'id': value.id,
+            'activateDate': getCurrentTimestamp,
+            'isActivate': true,
+          });
+
           // เปลี่ยนสถานะ
           FirebaseFirestore.instance.doc(tmpMember[1]).update({
             'status': 1,
@@ -149,6 +161,7 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
 
         showStatus('success', 'ยืนยันข้อมูลเรียบร้อยแล้ว');
         return;
+         */
       }
 
       showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
