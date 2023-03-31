@@ -247,7 +247,7 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if(memberResult != null)
+                      if(memberResult != null && _model.status == 'warning')
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                         child: FFButtonWidget(
