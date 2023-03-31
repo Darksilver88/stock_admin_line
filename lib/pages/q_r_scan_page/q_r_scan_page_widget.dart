@@ -24,6 +24,9 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
 
+  var tmpMember;
+  var memberResult;
+
   @override
   void initState() {
     super.initState();
@@ -116,8 +119,8 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
         }
 
         // ดึงข้อมูล
-        var tmpMember = _model.textQR.split('_');
-        var memberResult = await FirebaseFirestore.instance.doc(tmpMember[1]).get();
+        tmpMember = _model.textQR.split('_');
+        memberResult = await FirebaseFirestore.instance.doc(tmpMember[1]).get();
 
         // ถ้าเคยสแกนแล้ว
         if (memberResult.data()!["status"] == 1) {
@@ -127,41 +130,8 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
         }
 
         // แสดงข้อมูลให้นิติเห็นก่อน
-        showStatus('info', '');
+        showStatus('warning', 'กรุณาตรวจสอบรายละเอียดของลูกบ้าน');
         return;
-
-        // ไปสร้างข้อมูลใน kconnect/(customerของตัวแอดมินที่เป็นคนสแกน)/
-        /*FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/member').add({
-          'roomNo': memberResult.data()!["roomNo"],
-          'prefixName': memberResult.data()!["prefixName"],
-          'firstName': memberResult.data()!["firstName"],
-          'lastName': memberResult.data()!["lastName"],
-          'fullName': memberResult.data()!["fullName"],
-          'userRole': 'ลูกบ้าน',
-          'status': 1,
-          'create_by': FFAppState().currentAdminMember,
-          'create_date': getCurrentTimestamp,
-        }).then((value) {
-
-          //เพิ่ม k-connect-activate ไว้เข้าครั้งถัดไป
-          FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/k-connect-activate').doc(value.id).set({
-            'id': value.id,
-            'activateDate': getCurrentTimestamp,
-            'isActivate': true,
-          });
-
-          // เปลี่ยนสถานะ
-          FirebaseFirestore.instance.doc(tmpMember[1]).update({
-            'status': 1,
-            'update_by': FFAppState().currentAdminMember,
-            'update_date': getCurrentTimestamp,
-            'customerPath': value.path,
-          });
-        });
-
-        showStatus('success', 'ยืนยันข้อมูลเรียบร้อยแล้ว');
-        return;
-         */
       }
 
       showStatus('failed', 'ไม่พบข้อมูลกรุณาลองอีกครั้ง');
@@ -218,34 +188,152 @@ class _QRScanPageWidgetState extends State<QRScanPageWidget> {
                       fontSize: 24.0,
                     ),
               ),
+              if(memberResult != null)
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'ชื่อ - สกุล ',
+                                style: TextStyle(),
+                              ),
+                              TextSpan(
+                                text: memberResult.data()!["fullName"],
+                                style: TextStyle(),
+                              )
+                            ],
+                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Kanit',
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'เลขที่ห้อง ',
+                                style: TextStyle(),
+                              ),
+                              TextSpan(
+                                text: memberResult.data()!["roomNo"],
+                                style: TextStyle(),
+                              )
+                            ],
+                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Kanit',
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               if (_model.status != "")
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.safePop();
-                    },
-                    text: 'กลับ',
-                    icon: Icon(
-                      Icons.chevron_left_rounded,
-                      size: 15,
-                    ),
-                    options: FFButtonOptions(
-                      width: 130,
-                      height: 40,
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                            fontFamily: 'Kanit',
-                            color: Colors.white,
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if(memberResult != null)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            // ไปสร้างข้อมูลใน kconnect/(customerของตัวแอดมินที่เป็นคนสแกน)/
+                            FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/member').add({
+                              'roomNo': memberResult.data()!["roomNo"],
+                              'prefixName': memberResult.data()!["prefixName"],
+                              'firstName': memberResult.data()!["firstName"],
+                              'lastName': memberResult.data()!["lastName"],
+                              'fullName': memberResult.data()!["fullName"],
+                              'userRole': 'ลูกบ้าน',
+                              'status': 1,
+                              'create_by': FFAppState().currentAdminMember,
+                              'create_date': getCurrentTimestamp,
+                            }).then((value) {
+                              //เพิ่ม k-connect-activate ไว้เข้าครั้งถัดไป
+                              FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/k-connect-activate').doc(value.id).set({
+                                'id': value.id,
+                                'activateDate': getCurrentTimestamp,
+                                'isActivate': true,
+                              });
+
+                              // เปลี่ยนสถานะ
+                              FirebaseFirestore.instance.doc(tmpMember[1]).update({
+                                'status': 1,
+                                'update_by': FFAppState().currentAdminMember,
+                                'update_date': getCurrentTimestamp,
+                                'customerPath': value.path,
+                              });
+                            });
+
+                            showStatus('success', 'ยืนยันข้อมูลเรียบร้อยแล้ว');
+                            return;
+                          },
+                          text: 'ยืนยัน',
+                          options: FFButtonOptions(
+                            width: 130,
+                            height: 40,
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            color: FlutterFlowTheme.of(context).success,
+                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Kanit',
+                                  color: Colors.white,
+                                ),
+                            elevation: 2,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            context.safePop();
+                          },
+                          text: 'กลับ',
+                          icon: Icon(
+                            Icons.chevron_left_rounded,
+                            size: 15,
+                          ),
+                          options: FFButtonOptions(
+                            width: 130,
+                            height: 40,
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            color: FlutterFlowTheme.of(context).alternate,
+                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Kanit',
+                                  color: Colors.white,
+                                ),
+                            elevation: 2,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
             ],
