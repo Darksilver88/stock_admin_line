@@ -101,7 +101,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                       Text(
                         'K-Connect',
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Kanit',
                               color: FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 42.0,
