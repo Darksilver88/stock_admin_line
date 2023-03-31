@@ -84,7 +84,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                       width: 50.0,
                       height: 50.0,
                       child: CircularProgressIndicator(
-                        color: FlutterFlowTheme.of(context).primaryColor,
+                        color: FlutterFlowTheme.of(context).primary,
                       ),
                     ),
                   );
@@ -118,7 +118,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                 Text(
                                   widget.stockParameter!.code!,
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyText1
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Kanit',
                                         fontSize: 32.0,
@@ -137,7 +137,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                               decoration: InputDecoration(
                                 labelText: 'รหัสติดตามพัสดุ',
                                 hintStyle:
-                                    FlutterFlowTheme.of(context).bodyText2,
+                                    FlutterFlowTheme.of(context).bodySmall,
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color:
@@ -169,7 +169,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   borderRadius: BorderRadius.circular(16.0),
                                 ),
                               ),
-                              style: FlutterFlowTheme.of(context).bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyMedium,
                               validator: _model.trackingCodeControllerValidator
                                   .asValidator(context),
                             ),
@@ -203,7 +203,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   textHighlightStyle: TextStyle(),
                                   elevation: 4.0,
                                   optionBackgroundColor:
@@ -236,7 +236,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   decoration: InputDecoration(
                                     labelText: 'ห้องเลขที่',
                                     hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                        FlutterFlowTheme.of(context).bodySmall,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -268,7 +268,8 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                       borderRadius: BorderRadius.circular(16.0),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   validator: _model.roomNoControllerValidator
                                       .asValidator(context),
                                 );
@@ -304,7 +305,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   textHighlightStyle: TextStyle(),
                                   elevation: 4.0,
                                   optionBackgroundColor:
@@ -338,7 +339,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                   decoration: InputDecoration(
                                     labelText: 'ชื่อผู้รับ',
                                     hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                        FlutterFlowTheme.of(context).bodySmall,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
@@ -370,7 +371,8 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                       borderRadius: BorderRadius.circular(16.0),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   validator: _model
                                       .receiveNameControllerValidator
                                       .asValidator(context),
@@ -399,11 +401,12 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                         0.0, 0.0, 0.0, 0.0),
                                     color: Color(0xFFD83333),
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Kanit',
                                           color: Colors.white,
                                         ),
+                                    elevation: 2.0,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
@@ -438,7 +441,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                           content: Text(
                                             'บันทึกข้อมูลเรียบร้อยแล้ว',
                                             style: FlutterFlowTheme.of(context)
-                                                .subtitle1
+                                                .titleMedium
                                                 .override(
                                                   fontFamily: 'Kanit',
                                                   color: Colors.white,
@@ -448,7 +451,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                               Duration(milliseconds: 4000),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
-                                                  .secondaryColor,
+                                                  .secondary,
                                         ),
                                       );
                                       context.safePop();
@@ -461,7 +464,7 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                           content: Text(
                                             'ขออภัยไม่มีลูกบ้านนี้ในระบบ',
                                             style: FlutterFlowTheme.of(context)
-                                                .subtitle1
+                                                .titleMedium
                                                 .override(
                                                   fontFamily: 'Kanit',
                                                   color: Colors.white,
@@ -486,14 +489,14 @@ class _StockEditDetailViewWidgetState extends State<StockEditDetailViewWidget> {
                                         0.0, 0.0, 0.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Kanit',
                                           color: Colors.white,
                                         ),
+                                    elevation: 2.0,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,

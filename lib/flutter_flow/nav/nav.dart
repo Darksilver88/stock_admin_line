@@ -293,7 +293,7 @@ class FFRoute {
                     width: 50.0,
                     height: 50.0,
                     child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme.of(context).primary,
                     ),
                   ),
                 )

@@ -56,7 +56,7 @@ class _NoDataWidgetState extends State<NoDataWidget> {
             child: Text(
               'ไม่มีข้อมูล',
               textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).bodyText1.override(
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Kanit',
                     color: Color(0xFFBEC6CF),
                     fontSize: 18.0,

@@ -65,10 +65,9 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                     child: Column(
                       children: [
                         TabBar(
-                          labelColor: FlutterFlowTheme.of(context).primaryColor,
-                          labelStyle: FlutterFlowTheme.of(context).subtitle2,
-                          indicatorColor:
-                              FlutterFlowTheme.of(context).primaryColor,
+                          labelColor: FlutterFlowTheme.of(context).primary,
+                          labelStyle: FlutterFlowTheme.of(context).titleSmall,
+                          indicatorColor: FlutterFlowTheme.of(context).primary,
                           tabs: [
                             Tab(
                               text: 'รอจัดการพัสดุ',
@@ -106,7 +105,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                             child: CircularProgressIndicator(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                                      .primary,
                                             ),
                                           ),
                                         );
@@ -245,7 +244,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                   activeColor:
                                                                       FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primaryColor,
+                                                                          .primary,
                                                                 ),
                                                               ),
                                                             if (listViewStockListRecord
@@ -287,7 +286,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                         listViewStockListRecord
                                                                             .trackingCode!,
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
+                                                                            .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Kanit',
                                                                               fontSize: 18.0,
@@ -302,7 +301,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                               .end,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .bodyText1
+                                                                          .bodyMedium
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Kanit',
@@ -346,7 +345,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                           )
                                                                         ],
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1,
+                                                                            .bodyMedium,
                                                                       ),
                                                                     ),
                                                                     Expanded(
@@ -373,7 +372,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                             )
                                                                           ],
                                                                           style: FlutterFlowTheme.of(context)
-                                                                              .bodyText1
+                                                                              .bodyMedium
                                                                               .override(
                                                                                 fontFamily: 'Kanit',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -443,7 +442,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                     'ส่งแจ้งเตือนไปยังลูกบ้าน',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily: 'Kanit',
                                                           fontSize: 18.0,
@@ -485,7 +484,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                           backgroundColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .secondaryColor,
+                                                                  .secondary,
                                                         ),
                                                       );
                                                     },
@@ -510,17 +509,18 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primaryColor,
+                                                              .primary,
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .subtitle2
+                                                              .titleSmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Kanit',
                                                                 color: Colors
                                                                     .white,
                                                               ),
+                                                      elevation: 2.0,
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
@@ -613,7 +613,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         height: 50.0,
                                         child: CircularProgressIndicator(
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                              .primary,
                                         ),
                                       ),
                                     );
@@ -689,7 +689,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                       .trackingCode!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1
+                                                                      .bodyMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Kanit',
@@ -706,7 +706,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                         .end,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1
+                                                                    .bodyMedium
                                                                     .override(
                                                                       fontFamily:
                                                                           'Kanit',
@@ -754,7 +754,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                   ],
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1,
+                                                                      .bodyMedium,
                                                                 ),
                                                               ),
                                                               Expanded(
@@ -789,7 +789,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                     ],
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText1
+                                                                        .bodyMedium
                                                                         .override(
                                                                           fontFamily:
                                                                               'Kanit',
@@ -828,7 +828,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1
+                                                                      .bodyMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Kanit',
@@ -839,7 +839,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                             return Color(0xFFE98A15);
                                                                           } else if (listViewStockListRecord.status ==
                                                                               3) {
-                                                                            return FlutterFlowTheme.of(context).secondaryColor;
+                                                                            return FlutterFlowTheme.of(context).secondary;
                                                                           } else {
                                                                             return Colors.black;
                                                                           }
@@ -853,7 +853,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                     ' เมื่อ ',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText1
+                                                                        .bodyMedium
                                                                         .override(
                                                                           fontFamily:
                                                                               'Kanit',
@@ -871,7 +871,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                             .updateDate!),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText1
+                                                                        .bodyMedium
                                                                         .override(
                                                                           fontFamily:
                                                                               'Kanit',
