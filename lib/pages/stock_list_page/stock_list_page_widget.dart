@@ -360,9 +360,9 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                           content: Text(
                                                             'ส่งแจ้งเตือนไปยังลูกบ้านแล้ว',
                                                             style: FlutterFlowTheme.of(context).subtitle1.override(
-                                                              fontFamily: 'Kanit',
-                                                              color: Colors.white,
-                                                            ),
+                                                                  fontFamily: 'Kanit',
+                                                                  color: Colors.white,
+                                                                ),
                                                           ),
                                                           duration: Duration(milliseconds: 4000),
                                                           backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
@@ -408,6 +408,10 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                       ),
                                       onPressed: () async {
                                         var runCodeNumber = await functions.runCodeNumber();
+
+                                        // ให้สร้าง /kconnect/ชื่อโครงการ/stock/data ก่อน ไม่งั้นเป็นสีเทา เผื่อมีปัญหา
+                                        FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/stock/').doc('data').set({});
+
                                         final stockListCreateData = createStockListRecordData(
                                           createDate: getCurrentTimestamp,
                                           //code: random_data.randomInteger(0, 100000).toString(),
@@ -415,7 +419,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                           status: 1,
                                           roomNo: '',
                                           receiveName: '',
-                                          trackingCode: random_data.randomInteger(0, 100000).toString(),
+                                          trackingCode: 'TH' + random_data.randomInteger(0, 1000000000).toString(),
                                         );
                                         await StockListRecord.collection.doc().set(stockListCreateData);
                                       },
