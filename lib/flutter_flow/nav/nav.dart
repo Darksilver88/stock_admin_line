@@ -112,6 +112,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'StockTypeOutPage',
           path: '/stockTypeOutPage',
           builder: (context, params) => StockTypeOutPageWidget(),
+        ),
+        FFRoute(
+          name: 'CameraWebPage',
+          path: '/cameraWebPage',
+          builder: (context, params) => CameraWebPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       urlPathStrategy: UrlPathStrategy.path,
