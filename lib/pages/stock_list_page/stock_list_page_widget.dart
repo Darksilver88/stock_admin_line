@@ -585,7 +585,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                         size: 30.0,
                                       ),
                                       onPressed: () async {
-                                        context.pushNamed('QRScanPage');
+                                        context.pushNamed('StockTypeOutPage');
                                       },
                                     ),
                                   ),
