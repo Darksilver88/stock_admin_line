@@ -16,8 +16,7 @@ class FFAppState extends ChangeNotifier {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
-    _currentAdminMember =
-        prefs.getString('ff_currentAdminMember')?.ref ?? _currentAdminMember;
+    _currentAdminMember = prefs.getString('ff_currentAdminMember')?.ref ?? _currentAdminMember;
     _customerName = prefs.getString('ff_customerName') ?? _customerName;
   }
 
@@ -29,7 +28,9 @@ class FFAppState extends ChangeNotifier {
   late SharedPreferences prefs;
 
   List<DocumentReference> _stockChecked = [];
+
   List<DocumentReference> get stockChecked => _stockChecked;
+
   set stockChecked(List<DocumentReference> _value) {
     _stockChecked = _value;
   }
@@ -47,25 +48,37 @@ class FFAppState extends ChangeNotifier {
   }
 
   bool _isBottomSheetShow = false;
+
   bool get isBottomSheetShow => _isBottomSheetShow;
+
   set isBottomSheetShow(bool _value) {
     _isBottomSheetShow = _value;
   }
 
   DocumentReference? _currentAdminMember;
+
   DocumentReference? get currentAdminMember => _currentAdminMember;
+
   set currentAdminMember(DocumentReference? _value) {
     _currentAdminMember = _value;
-    _value != null
-        ? prefs.setString('ff_currentAdminMember', _value.path)
-        : prefs.remove('ff_currentAdminMember');
+    _value != null ? prefs.setString('ff_currentAdminMember', _value.path) : prefs.remove('ff_currentAdminMember');
   }
 
   String _customerName = '';
+
   String get customerName => _customerName;
+
   set customerName(String _value) {
     _customerName = _value;
     prefs.setString('ff_customerName', _value);
+  }
+
+  var _cameras;
+
+  get cameras => _cameras;
+
+  set cameras(var _value) {
+    _cameras = _value;
   }
 }
 

@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,15 @@ import 'flutter_flow/internationalization.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+late List<CameraDescription> _cameras;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initFirebase();
 
   final appState = FFAppState(); // Initialize FFAppState
+  _cameras = await availableCameras();
+  FFAppState().cameras = _cameras;
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,

@@ -1,6 +1,5 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -122,7 +121,8 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                     ),
                     child: InkWell(
                       onTap: () async {
-                        await Future.delayed(const Duration(milliseconds: 1000));
+                        // await Future.delayed(const Duration(milliseconds: 1000));
+                        context.pushNamed('CameraWebPage');
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
