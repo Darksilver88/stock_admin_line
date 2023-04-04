@@ -113,6 +113,27 @@ class _$StockListRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.remark;
+    if (value != null) {
+      result
+        ..add('remark')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.dummyName;
+    if (value != null) {
+      result
+        ..add('dummyName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.dummyPhoto;
+    if (value != null) {
+      result
+        ..add('dummyPhoto')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -194,6 +215,18 @@ class _$StockListRecordSerializer
           result.qrCode = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'remark':
+          result.remark = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'dummyName':
+          result.dummyName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'dummyPhoto':
+          result.dummyPhoto = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -235,6 +268,12 @@ class _$StockListRecord extends StockListRecord {
   @override
   final String? qrCode;
   @override
+  final String? remark;
+  @override
+  final String? dummyName;
+  @override
+  final String? dummyPhoto;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$StockListRecord([void Function(StockListRecordBuilder)? updates]) =>
@@ -254,6 +293,9 @@ class _$StockListRecord extends StockListRecord {
       this.readStatus,
       this.ocrDetail,
       this.qrCode,
+      this.remark,
+      this.dummyName,
+      this.dummyPhoto,
       this.ffRef})
       : super._();
 
@@ -282,41 +324,34 @@ class _$StockListRecord extends StockListRecord {
         readStatus == other.readStatus &&
         ocrDetail == other.ocrDetail &&
         qrCode == other.qrCode &&
+        remark == other.remark &&
+        dummyName == other.dummyName &&
+        dummyPhoto == other.dummyPhoto &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            0,
-                                                            createDate
-                                                                .hashCode),
-                                                        createBy.hashCode),
-                                                    status.hashCode),
-                                                code.hashCode),
-                                            receiveName.hashCode),
-                                        trackingCode.hashCode),
-                                    roomNo.hashCode),
-                                memberRef.hashCode),
-                            updateDate.hashCode),
-                        updateBy.hashCode),
-                    readStatus.hashCode),
-                ocrDetail.hashCode),
-            qrCode.hashCode),
-        ffRef.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, createDate.hashCode);
+    _$hash = $jc(_$hash, createBy.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jc(_$hash, receiveName.hashCode);
+    _$hash = $jc(_$hash, trackingCode.hashCode);
+    _$hash = $jc(_$hash, roomNo.hashCode);
+    _$hash = $jc(_$hash, memberRef.hashCode);
+    _$hash = $jc(_$hash, updateDate.hashCode);
+    _$hash = $jc(_$hash, updateBy.hashCode);
+    _$hash = $jc(_$hash, readStatus.hashCode);
+    _$hash = $jc(_$hash, ocrDetail.hashCode);
+    _$hash = $jc(_$hash, qrCode.hashCode);
+    _$hash = $jc(_$hash, remark.hashCode);
+    _$hash = $jc(_$hash, dummyName.hashCode);
+    _$hash = $jc(_$hash, dummyPhoto.hashCode);
+    _$hash = $jc(_$hash, ffRef.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -335,6 +370,9 @@ class _$StockListRecord extends StockListRecord {
           ..add('readStatus', readStatus)
           ..add('ocrDetail', ocrDetail)
           ..add('qrCode', qrCode)
+          ..add('remark', remark)
+          ..add('dummyName', dummyName)
+          ..add('dummyPhoto', dummyPhoto)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -399,6 +437,18 @@ class StockListRecordBuilder
   String? get qrCode => _$this._qrCode;
   set qrCode(String? qrCode) => _$this._qrCode = qrCode;
 
+  String? _remark;
+  String? get remark => _$this._remark;
+  set remark(String? remark) => _$this._remark = remark;
+
+  String? _dummyName;
+  String? get dummyName => _$this._dummyName;
+  set dummyName(String? dummyName) => _$this._dummyName = dummyName;
+
+  String? _dummyPhoto;
+  String? get dummyPhoto => _$this._dummyPhoto;
+  set dummyPhoto(String? dummyPhoto) => _$this._dummyPhoto = dummyPhoto;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -423,6 +473,9 @@ class StockListRecordBuilder
       _readStatus = $v.readStatus;
       _ocrDetail = $v.ocrDetail;
       _qrCode = $v.qrCode;
+      _remark = $v.remark;
+      _dummyName = $v.dummyName;
+      _dummyPhoto = $v.dummyPhoto;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -459,10 +512,13 @@ class StockListRecordBuilder
             readStatus: readStatus,
             ocrDetail: ocrDetail,
             qrCode: qrCode,
+            remark: remark,
+            dummyName: dummyName,
+            dummyPhoto: dummyPhoto,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

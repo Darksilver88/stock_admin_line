@@ -42,6 +42,12 @@ abstract class StockListRecord
 
   String? get qrCode;
 
+  String? get remark;
+
+  String? get dummyName;
+
+  String? get dummyPhoto;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -54,7 +60,10 @@ abstract class StockListRecord
     ..roomNo = ''
     ..readStatus = 0
     ..ocrDetail = ''
-    ..qrCode = '';
+    ..qrCode = ''
+    ..remark = ''
+    ..dummyName = ''
+    ..dummyPhoto = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('kconnect/${FFAppState().customerName}/stock/data/stock_list');
@@ -91,6 +100,9 @@ Map<String, dynamic> createStockListRecordData({
   int? readStatus,
   String? ocrDetail,
   String? qrCode,
+  String? remark,
+  String? dummyName,
+  String? dummyPhoto,
 }) {
   final firestoreData = serializers.toFirestore(
     StockListRecord.serializer,
@@ -108,7 +120,10 @@ Map<String, dynamic> createStockListRecordData({
         ..updateBy = updateBy
         ..readStatus = readStatus
         ..ocrDetail = ocrDetail
-        ..qrCode = qrCode,
+        ..qrCode = qrCode
+        ..remark = remark
+        ..dummyName = dummyName
+        ..dummyPhoto = dummyPhoto,
     ),
   );
 
