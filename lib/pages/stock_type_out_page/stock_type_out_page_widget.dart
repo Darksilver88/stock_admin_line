@@ -122,8 +122,7 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                     ),
                     child: InkWell(
                       onTap: () async {
-                        await Future.delayed(
-                            const Duration(milliseconds: 1000));
+                        context.pushNamed('CameraWebPage');
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
