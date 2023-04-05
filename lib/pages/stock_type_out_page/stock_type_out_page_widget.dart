@@ -88,7 +88,7 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                         children: [
                           Icon(
                             Icons.qr_code_rounded,
-                            color: Colors.black,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 84,
                           ),
                           Text(
@@ -130,7 +130,7 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                         children: [
                           Icon(
                             Icons.photo_camera,
-                            color: Colors.black,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             size: 84,
                           ),
                           Text(

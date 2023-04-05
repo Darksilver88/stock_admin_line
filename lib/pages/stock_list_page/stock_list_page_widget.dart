@@ -364,7 +364,7 @@ class _StockListPageWidgetState extends State<StockListPageWidget> {
                                                                   color: Colors.white,
                                                                 ),
                                                           ),
-                                                          duration: Duration(milliseconds: 4000),
+                                                          duration: Duration(milliseconds: 2000),
                                                           backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
                                                         ),
                                                       );
