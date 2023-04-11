@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "2.5.0"
   camera_web:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: camera_web
       url: "https://pub.dartlang.org"

@@ -1,3 +1,5 @@
+import 'package:camera/camera.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,8 @@ import 'package:provider/provider.dart';
 
 import 'stock_type_out_page_model.dart';
 export 'stock_type_out_page_model.dart';
+
+late List<CameraDescription> _cameras;
 
 class StockTypeOutPageWidget extends StatefulWidget {
   const StockTypeOutPageWidget({Key? key}) : super(key: key);
@@ -122,6 +126,8 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                     child: InkWell(
                       onTap: () async {
                         // await Future.delayed(const Duration(milliseconds: 1000));
+                        _cameras = await availableCameras();
+                        FFAppState().cameras = _cameras;
                         context.pushNamed('CameraWebPage');
                       },
                       child: Column(

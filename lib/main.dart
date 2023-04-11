@@ -16,7 +16,7 @@ import 'flutter_flow/internationalization.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
-late List<CameraDescription> _cameras;
+
 
 void configLoading() {
   EasyLoading.instance
@@ -39,8 +39,6 @@ void main() async {
   await initFirebase();
 
   final appState = FFAppState(); // Initialize FFAppState
-  _cameras = await availableCameras();
-  FFAppState().cameras = _cameras;
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
