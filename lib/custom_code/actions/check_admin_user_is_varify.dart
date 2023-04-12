@@ -23,25 +23,45 @@ Future<List<String>> checkAdminUserIsVarify(
   }
 
   //เช็คว่าใน customer name มี เบอร์นี้ยัง
-  var rsMember = await FirebaseFirestore.instance.collection('kconnect/$customerName/member').where('phoneNumber', isNotEqualTo: phoneNumber).get();
-  if (rsMember.docs.length < 0) {
+  var rsMember = await FirebaseFirestore.instance.collection('kconnect/$customerName/member').where('phoneNumber', isEqualTo: phoneNumber).get();
+  print("rsMember");
+  print(rsMember);
+
+  if (rsMember.docs.length <= 0) {
     return dataReturn = ['failed', 'ขออภัยไม่พบเบอร์โทรศัพท์นี้ในระบบ'];
   }
+  print("aaaa");
   //เช็คว่าเบอร์นี้ เป็น นิติ มั้ย
   if (rsMember.docs[0].data()["userRole"] != 'เจ้าหน้าที่นิติ') {
     return dataReturn = ['failed', 'ขออภัยผู้ใช้ไม่ใช้เจ้าหน้าที่นิติ'];
   }
-
+  print("bbbb");
   //เช็คว่าเบอร์นี้ verify  ยัง
   if (rsMember.docs[0].data().containsKey('isVerify')) {
+    print("cccc");
     if (rsMember.docs[0].data()["isVerify"]) {
+      print("dddd");
       dataReturn = ['failed', 'ผู้ใช้นี้ถูกเปิดใช้งานแล้ว'];
     } else {
       // เซท verify
+      print("eeee");
+      FFAppState().currentAdminMember = rsMember.docs[0].reference;
+      FFAppState().customerName = customerName!;
+      final memberUpdateData = createMemberRecordData(
+        isVerify: true,
+      );
+      await FFAppState().currentAdminMember!.update(memberUpdateData);
       dataReturn = ['success', 'เปิดใช้งานเรียบร้อยแล้ว'];
     }
   } else {
     // เซท verify
+    print("ffff");
+    FFAppState().currentAdminMember = rsMember.docs[0].reference;
+    FFAppState().customerName = customerName!;
+    final memberUpdateData = createMemberRecordData(
+      isVerify: true,
+    );
+    await FFAppState().currentAdminMember!.update(memberUpdateData);
     dataReturn = ['success', 'เปิดใช้งานเรียบร้อยแล้ว'];
   }
   return dataReturn;
