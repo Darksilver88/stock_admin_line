@@ -90,10 +90,10 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.isVarify;
+    value = object.isVerify;
     if (value != null) {
       result
-        ..add('isVarify')
+        ..add('isVerify')
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
@@ -162,8 +162,8 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
           result.lineID = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'isVarify':
-          result.isVarify = serializers.deserialize(value,
+        case 'isVerify':
+          result.isVerify = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
         case 'Document__Reference__Field':
@@ -201,7 +201,7 @@ class _$MemberRecord extends MemberRecord {
   @override
   final String? lineID;
   @override
-  final bool? isVarify;
+  final bool? isVerify;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -219,7 +219,7 @@ class _$MemberRecord extends MemberRecord {
       this.createBy,
       this.prefixName,
       this.lineID,
-      this.isVarify,
+      this.isVerify,
       this.ffRef})
       : super._();
 
@@ -244,7 +244,7 @@ class _$MemberRecord extends MemberRecord {
         createBy == other.createBy &&
         prefixName == other.prefixName &&
         lineID == other.lineID &&
-        isVarify == other.isVarify &&
+        isVerify == other.isVerify &&
         ffRef == other.ffRef;
   }
 
@@ -261,7 +261,7 @@ class _$MemberRecord extends MemberRecord {
     _$hash = $jc(_$hash, createBy.hashCode);
     _$hash = $jc(_$hash, prefixName.hashCode);
     _$hash = $jc(_$hash, lineID.hashCode);
-    _$hash = $jc(_$hash, isVarify.hashCode);
+    _$hash = $jc(_$hash, isVerify.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -280,7 +280,7 @@ class _$MemberRecord extends MemberRecord {
           ..add('createBy', createBy)
           ..add('prefixName', prefixName)
           ..add('lineID', lineID)
-          ..add('isVarify', isVarify)
+          ..add('isVerify', isVerify)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -331,9 +331,9 @@ class MemberRecordBuilder
   String? get lineID => _$this._lineID;
   set lineID(String? lineID) => _$this._lineID = lineID;
 
-  bool? _isVarify;
-  bool? get isVarify => _$this._isVarify;
-  set isVarify(bool? isVarify) => _$this._isVarify = isVarify;
+  bool? _isVerify;
+  bool? get isVerify => _$this._isVerify;
+  set isVerify(bool? isVerify) => _$this._isVerify = isVerify;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -356,7 +356,7 @@ class MemberRecordBuilder
       _createBy = $v.createBy;
       _prefixName = $v.prefixName;
       _lineID = $v.lineID;
-      _isVarify = $v.isVarify;
+      _isVerify = $v.isVerify;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -390,7 +390,7 @@ class MemberRecordBuilder
             createBy: createBy,
             prefixName: prefixName,
             lineID: lineID,
-            isVarify: isVarify,
+            isVerify: isVerify,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
