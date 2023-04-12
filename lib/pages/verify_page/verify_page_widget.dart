@@ -187,7 +187,7 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                                   _model.customerNameController.text,
                                 );
                                 if (_model.checkAdminUserIsVarify?.first ==
-                                    'success') {
+                                    'failed') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -202,11 +202,38 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                                             ),
                                       ),
                                       duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
+                                      backgroundColor: _model
+                                                  .checkAdminUserIsVarify
+                                                  ?.first ==
+                                              'success'
+                                          ? FlutterFlowTheme.of(context).success
+                                          : FlutterFlowTheme.of(context).error,
                                     ),
                                   );
                                 } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        _model.checkAdminUserIsVarify!.last,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                            ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor: _model
+                                                  .checkAdminUserIsVarify
+                                                  ?.first ==
+                                              'success'
+                                          ? FlutterFlowTheme.of(context).success
+                                          : FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+
                                   context.goNamed('StockListPage');
                                 }
 
