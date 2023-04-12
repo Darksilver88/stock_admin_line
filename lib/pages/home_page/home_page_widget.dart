@@ -56,9 +56,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       context.goNamedAuth('StockListPage', mounted);*/
 
       //เปลี่ยนให้ไปกรอกยืนยันเองอีกหน้านึง
+      print(FFAppState().currentAdminMember);
+      print(FFAppState().customerName);
       if (FFAppState().customerName != null && FFAppState().customerName != '') {
+        print('aaaaaa');
         context.goNamedAuth('StockListPage', mounted);
       } else {
+        print('bbbbbb');
         context.pushNamedAuth('VerifyPage', mounted);
       }
     });
