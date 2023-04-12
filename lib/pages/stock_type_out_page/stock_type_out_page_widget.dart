@@ -37,12 +37,12 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -87,7 +87,7 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                         children: [
                           Icon(
                             Icons.qr_code_rounded,
-                            color: Colors.black,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 84.0,
                           ),
                           Text(
@@ -130,7 +130,7 @@ class _StockTypeOutPageWidgetState extends State<StockTypeOutPageWidget> {
                         children: [
                           Icon(
                             Icons.photo_camera,
-                            color: Colors.black,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             size: 84.0,
                           ),
                           Text(

@@ -46,12 +46,12 @@ class _CameraWebPageWidgetState extends State<CameraWebPageWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
             child: Material(
@@ -127,14 +127,14 @@ class _CameraWebPageWidgetState extends State<CameraWebPageWidget> {
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
@@ -171,14 +171,14 @@ class _CameraWebPageWidgetState extends State<CameraWebPageWidget> {
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
@@ -273,6 +273,7 @@ class _CameraWebPageWidgetState extends State<CameraWebPageWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
+                                var _shouldSetState = false;
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;
@@ -281,20 +282,63 @@ class _CameraWebPageWidgetState extends State<CameraWebPageWidget> {
                                     await actions.getStockReference(
                                   _model.stockCodeController.text,
                                 );
+                                _shouldSetState = true;
+                                if (_model.stockReference != null) {
+                                  final stockListUpdateData =
+                                      createStockListRecordData(
+                                    updateDate: getCurrentTimestamp,
+                                    updateBy: FFAppState().currentAdminMember,
+                                    status: 3,
+                                    remark: _model.remarkController.text,
+                                    dummyName: _model.dummyNameController.text,
+                                  );
+                                  await _model.stockReference!
+                                      .update(stockListUpdateData);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                            ),
+                                      ),
+                                      duration: Duration(milliseconds: 2000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).success,
+                                    ),
+                                  );
+                                  context.safePop();
+                                  if (_shouldSetState) setState(() {});
+                                  return;
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'ขออภัยไม่พบหมายเลขพัสดุนี้ในระบบ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Kanit',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                            ),
+                                      ),
+                                      duration: Duration(milliseconds: 2000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+                                  if (_shouldSetState) setState(() {});
+                                  return;
+                                }
 
-                                final stockListUpdateData =
-                                    createStockListRecordData(
-                                  updateDate: getCurrentTimestamp,
-                                  updateBy: FFAppState().currentAdminMember,
-                                  status: 3,
-                                  remark: _model.remarkController.text,
-                                  dummyName: _model.dummyNameController.text,
-                                );
-                                await _model.stockReference!
-                                    .update(stockListUpdateData);
-                                context.safePop();
-
-                                setState(() {});
+                                if (_shouldSetState) setState(() {});
                               },
                               text: 'บันทึก',
                               options: FFButtonOptions(

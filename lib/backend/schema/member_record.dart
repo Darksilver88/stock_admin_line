@@ -30,6 +30,8 @@ abstract class MemberRecord
 
   String? get prefixName;
 
+  String? get lineID;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -41,7 +43,8 @@ abstract class MemberRecord
     ..lastName = ''
     ..fullName = ''
     ..roomNo = ''
-    ..prefixName = '';
+    ..prefixName = ''
+    ..lineID = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('member');
@@ -74,6 +77,7 @@ Map<String, dynamic> createMemberRecordData({
   String? roomNo,
   DocumentReference? createBy,
   String? prefixName,
+  String? lineID,
 }) {
   final firestoreData = serializers.toFirestore(
     MemberRecord.serializer,
@@ -87,7 +91,8 @@ Map<String, dynamic> createMemberRecordData({
         ..fullName = fullName
         ..roomNo = roomNo
         ..createBy = createBy
-        ..prefixName = prefixName,
+        ..prefixName = prefixName
+        ..lineID = lineID,
     ),
   );
 

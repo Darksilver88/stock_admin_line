@@ -48,7 +48,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         return;
       }
 
-      context.goNamedAuth('StockListPage', mounted);
+      if (FFAppState().customerName != null &&
+          FFAppState().customerName != '') {
+        context.goNamedAuth('StockListPage', mounted);
+      } else {
+        context.pushNamedAuth('VerifyPage', mounted);
+      }
     });
   }
 
@@ -64,12 +69,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
