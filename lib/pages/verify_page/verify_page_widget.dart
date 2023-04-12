@@ -5,6 +5,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'verify_page_model.dart';
 export 'verify_page_model.dart';
 
@@ -49,18 +50,18 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
             child: Material(
               color: Colors.transparent,
-              elevation: 1.0,
+              elevation: 1,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
+                borderRadius: BorderRadius.circular(16),
               ),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: Form(
                   key: _model.formKey,
@@ -69,20 +70,18 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
                         child: Text(
                           'ยืนยันข้อมูลเจ้าหน้าที่',
                           style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Kanit',
-                                    fontSize: 22.0,
-                                  ),
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Kanit',
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                         child: TextFormField(
                           controller: _model.phoneNumberController,
                           autofocus: true,
@@ -93,30 +92,30 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).lineColor,
-                                width: 1.0,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).lineColor,
-                                width: 1.0,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                           ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
@@ -125,8 +124,7 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                         child: TextFormField(
                           controller: _model.customerNameController,
                           autofocus: true,
@@ -137,30 +135,30 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).lineColor,
-                                width: 1.0,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).lineColor,
-                                width: 1.0,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16.0),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                           ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
@@ -169,8 +167,7 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 6.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 6, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -182,7 +179,7 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                                   return;
                                 }
                                 _model.checkAdminUserIsVarify =
-                                    await actions.checkAdminUserIsVarify(
+                                await actions.checkAdminUserIsVarify(
                                   _model.phoneNumberController.text,
                                   _model.customerNameController.text,
                                 );
@@ -194,15 +191,15 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleMedium
                                             .override(
-                                              fontFamily: 'Kanit',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                            ),
+                                          fontFamily: 'Kanit',
+                                          color:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
+                                        ),
                                       ),
                                       duration: Duration(milliseconds: 4000),
                                       backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
+                                      FlutterFlowTheme.of(context).error,
                                     ),
                                   );
                                 } else {
@@ -213,25 +210,25 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                               },
                               text: 'ยืนยันข้อมูล',
                               options: FFButtonOptions(
-                                width: 130.0,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                width: 130,
+                                height: 40,
+                                padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                iconPadding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Kanit',
-                                      color: Colors.white,
-                                    ),
-                                elevation: 2.0,
+                                  fontFamily: 'Kanit',
+                                  color: Colors.white,
+                                ),
+                                elevation: 2,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
-                                  width: 1.0,
+                                  width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                             ),
                           ],

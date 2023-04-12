@@ -83,6 +83,13 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.lineID;
+    if (value != null) {
+      result
+        ..add('lineID')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -144,6 +151,10 @@ class _$MemberRecordSerializer implements StructuredSerializer<MemberRecord> {
           result.prefixName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'lineID':
+          result.lineID = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -177,6 +188,8 @@ class _$MemberRecord extends MemberRecord {
   @override
   final String? prefixName;
   @override
+  final String? lineID;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$MemberRecord([void Function(MemberRecordBuilder)? updates]) =>
@@ -192,6 +205,7 @@ class _$MemberRecord extends MemberRecord {
       this.roomNo,
       this.createBy,
       this.prefixName,
+      this.lineID,
       this.ffRef})
       : super._();
 
@@ -215,6 +229,7 @@ class _$MemberRecord extends MemberRecord {
         roomNo == other.roomNo &&
         createBy == other.createBy &&
         prefixName == other.prefixName &&
+        lineID == other.lineID &&
         ffRef == other.ffRef;
   }
 
@@ -230,6 +245,7 @@ class _$MemberRecord extends MemberRecord {
     _$hash = $jc(_$hash, roomNo.hashCode);
     _$hash = $jc(_$hash, createBy.hashCode);
     _$hash = $jc(_$hash, prefixName.hashCode);
+    _$hash = $jc(_$hash, lineID.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -247,6 +263,7 @@ class _$MemberRecord extends MemberRecord {
           ..add('roomNo', roomNo)
           ..add('createBy', createBy)
           ..add('prefixName', prefixName)
+          ..add('lineID', lineID)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -293,6 +310,10 @@ class MemberRecordBuilder
   String? get prefixName => _$this._prefixName;
   set prefixName(String? prefixName) => _$this._prefixName = prefixName;
 
+  String? _lineID;
+  String? get lineID => _$this._lineID;
+  set lineID(String? lineID) => _$this._lineID = lineID;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -313,6 +334,7 @@ class MemberRecordBuilder
       _roomNo = $v.roomNo;
       _createBy = $v.createBy;
       _prefixName = $v.prefixName;
+      _lineID = $v.lineID;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -345,6 +367,7 @@ class MemberRecordBuilder
             roomNo: roomNo,
             createBy: createBy,
             prefixName: prefixName,
+            lineID: lineID,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

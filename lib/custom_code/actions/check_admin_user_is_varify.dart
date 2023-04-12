@@ -13,4 +13,5 @@ Future<bool> checkAdminUserIsVarify(
   String? customerName,
 ) async {
   // Add your function code here!
+  return true;
 }

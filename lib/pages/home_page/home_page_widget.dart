@@ -52,11 +52,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       // ค่านี้ต้องมาจากไลน์ เมื่อสามารถ ผูก user นิติ กับ ไลน์ OA ได้แล้ว
       /*var rs = await FirebaseFirestore.instance.doc('/kconnect/คอนโดหลังวัด/member/ZwnBLM0dbVS65mvcA6cc').get();
       FFAppState().currentAdminMember = rs.reference;
-      FFAppState().customerName = 'คอนโดหลังวัด';*/
+      FFAppState().customerName = 'คอนโดหลังวัด';
+      context.goNamedAuth('StockListPage', mounted);*/
 
       //เปลี่ยนให้ไปกรอกยืนยันเองอีกหน้านึง
-
-      context.goNamedAuth('StockListPage', mounted);
+      if (FFAppState().customerName != null && FFAppState().customerName != '') {
+        context.goNamedAuth('StockListPage', mounted);
+      } else {
+        context.pushNamedAuth('VerifyPage', mounted);
+      }
     });
   }
 
