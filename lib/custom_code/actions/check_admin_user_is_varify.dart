@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<bool> checkAdminUserIsVarify(
+Future<List<String>> checkAdminUserIsVarify(
   String? phoneNumber,
   String? customerName,
 ) async {
