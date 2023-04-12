@@ -14,7 +14,7 @@ Future<bool> sendNotificationToMember() async {
   for (var i = 0; i < FFAppState().stockChecked.length; i++) {
     await FirebaseFirestore.instance.doc(FFAppState().stockChecked[i].path).update({
       'status': 2,
-      'readStatus': 0,
+      'readStatus': 0, // ไม่ได้ใช้แล้วเพราะ เลข bedge จะใช้ status แทนเพราะ มันสำคัญกว่าอ่านข้อความ ต้องมารับพัสดุ bedge ถึงจะหาย
       'update_date': getCurrentTimestamp,
     });
   }
