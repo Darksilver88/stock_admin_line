@@ -33,7 +33,7 @@ class VerifyPageModel extends FlutterFlowModel {
   }
 
   // Stores action output result for [Custom Action - checkAdminUserIsVarify] action in Button widget.
-  bool? checkAdminUserIsVarify;
+  List<String>? checkAdminUserIsVarify;
 
   /// Initialization and disposal methods.
 

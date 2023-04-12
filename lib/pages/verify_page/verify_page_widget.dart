@@ -106,14 +106,14 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
@@ -150,14 +150,14 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).error,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(16.0),
@@ -186,11 +186,12 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                                   _model.phoneNumberController.text,
                                   _model.customerNameController.text,
                                 );
-                                if (_model.checkAdminUserIsVarify!) {
+                                if (_model.checkAdminUserIsVarify?.first ==
+                                    'success') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'User นี้ถูกเปิดใช้งานไปแล้ว',
+                                        _model.checkAdminUserIsVarify!.last,
                                         style: FlutterFlowTheme.of(context)
                                             .titleMedium
                                             .override(
