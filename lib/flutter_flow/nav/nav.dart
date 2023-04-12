@@ -117,6 +117,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CameraWebPage',
           path: '/cameraWebPage',
           builder: (context, params) => CameraWebPageWidget(),
+        ),
+        FFRoute(
+          name: 'VerifyPage',
+          path: '/verifyPage',
+          builder: (context, params) => VerifyPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       urlPathStrategy: UrlPathStrategy.path,

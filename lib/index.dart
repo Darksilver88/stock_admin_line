@@ -9,3 +9,4 @@ export '/pages/stock_type_out_page/stock_type_out_page_widget.dart'
     show StockTypeOutPageWidget;
 export '/pages/camera_web_page/camera_web_page_widget.dart'
     show CameraWebPageWidget;
+export '/pages/verify_page/verify_page_widget.dart' show VerifyPageWidget;
