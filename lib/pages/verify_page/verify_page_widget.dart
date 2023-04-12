@@ -187,7 +187,7 @@ class _VerifyPageWidgetState extends State<VerifyPageWidget> {
                                   _model.customerNameController.text,
                                 );
                                 if (_model.checkAdminUserIsVarify?.first ==
-                                    'success') {
+                                    'failed') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
