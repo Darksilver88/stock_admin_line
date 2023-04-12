@@ -13,5 +13,6 @@ Future<List<String>> checkAdminUserIsVarify(
   String? customerName,
 ) async {
   // Add your function code here!
-  return true;
+  var dataReturn = ['success', 'ผู้ใช้นี้ถุกเปิดใช้งานแล้ว'];
+  return dataReturn;
 }
