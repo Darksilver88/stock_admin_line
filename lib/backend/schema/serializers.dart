@@ -5,6 +5,7 @@ import 'stock_list_record.dart';
 import 'member_record.dart';
 import 'prefix_tracking_code_record.dart';
 import 'stock_status_record.dart';
+import 'notification_list_record.dart';
 
 import 'index.dart';
 
@@ -19,6 +20,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   MemberRecord,
   PrefixTrackingCodeRecord,
   StockStatusRecord,
+  NotificationListRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

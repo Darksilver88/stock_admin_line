@@ -9,6 +9,7 @@ import 'schema/stock_list_record.dart';
 import 'schema/member_record.dart';
 import 'schema/prefix_tracking_code_record.dart';
 import 'schema/stock_status_record.dart';
+import 'schema/notification_list_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -20,6 +21,7 @@ export 'schema/stock_list_record.dart';
 export 'schema/member_record.dart';
 export 'schema/prefix_tracking_code_record.dart';
 export 'schema/stock_status_record.dart';
+export 'schema/notification_list_record.dart';
 
 /// Functions to query StockListRecords (as a Stream and as a Future).
 Future<int> queryStockListRecordCount({
@@ -229,6 +231,59 @@ Future<FFFirestorePage<StockStatusRecord>> queryStockStatusRecordPage({
       pageSize: pageSize,
       isStream: isStream,
     );
+
+/// Functions to query NotificationListRecords (as a Stream and as a Future).
+Future<int> queryNotificationListRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      NotificationListRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<NotificationListRecord>> queryNotificationListRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      NotificationListRecord.collection,
+      NotificationListRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<NotificationListRecord>> queryNotificationListRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      NotificationListRecord.collection,
+      NotificationListRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<NotificationListRecord>>
+    queryNotificationListRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          NotificationListRecord.collection,
+          NotificationListRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
 
 Future<int> queryCollectionCount(
   Query collection, {
