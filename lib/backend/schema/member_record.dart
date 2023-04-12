@@ -32,6 +32,8 @@ abstract class MemberRecord
 
   String? get lineID;
 
+  bool? get isVarify;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -44,7 +46,8 @@ abstract class MemberRecord
     ..fullName = ''
     ..roomNo = ''
     ..prefixName = ''
-    ..lineID = '';
+    ..lineID = ''
+    ..isVarify = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('member');
@@ -78,6 +81,7 @@ Map<String, dynamic> createMemberRecordData({
   DocumentReference? createBy,
   String? prefixName,
   String? lineID,
+  bool? isVarify,
 }) {
   final firestoreData = serializers.toFirestore(
     MemberRecord.serializer,
@@ -92,7 +96,8 @@ Map<String, dynamic> createMemberRecordData({
         ..roomNo = roomNo
         ..createBy = createBy
         ..prefixName = prefixName
-        ..lineID = lineID,
+        ..lineID = lineID
+        ..isVarify = isVarify,
     ),
   );
 
