@@ -34,13 +34,13 @@ Future<List<String>> checkAdminUserIsVarify(
 
   //เช็คว่าเบอร์นี้ verify  ยัง
   if (rsMember.docs[0].data().containsKey('isVerify')) {
-    if(rsMember.docs[0].data()["isVerify"]){
+    if (rsMember.docs[0].data()["isVerify"]) {
       dataReturn = ['failed', 'ผู้ใช้นี้ถูกเปิดใช้งานแล้ว'];
-    }else{
+    } else {
       // เซท verify
       dataReturn = ['success', 'เปิดใช้งานเรียบร้อยแล้ว'];
     }
-  }else{
+  } else {
     // เซท verify
     dataReturn = ['success', 'เปิดใช้งานเรียบร้อยแล้ว'];
   }
